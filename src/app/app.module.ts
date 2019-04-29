@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -11,6 +12,7 @@ import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { AdminComponent } from './admin/admin.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
+
 
 const appRoutes = [
   /*{path: 'details/:id', component: DetailsComponent},*/
@@ -34,6 +36,7 @@ const appRoutes = [
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
+    HttpClientModule,
   ],
   exports: [
     RouterModule
