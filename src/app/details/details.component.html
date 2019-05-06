@@ -1,13 +1,16 @@
-<div class="row" *ngFor="let product of productList">
+<div class="wrapper" *ngFor="let product of productList">
+    <h2>{{product.name}}</h2>
 
-    <span><h2>{{product.name}}</h2></span>
+    <div class="row">
+      <div class="col">
+        <img src="{{product.imageUrl}}" alt="movie poster">
+      </div>
+    
+      <div class="col">
+        <p>{{product.description}}</p>
+        <p>{{product.price}} SEK</p>
+        <p>Release year: {{product.year}}</p>
+      </div>
+    </div>
 
-  <div class="col">
-    <img src="{{product.imageUrl}}" alt="movie poster">
-  </div>
-
-  <div class="col">
-    <p>{{product.description}}</p>
-  </div>
-  
 </div>
