@@ -10,14 +10,14 @@ import { MockDataService } from '../mock-data.service';
 })
 export class HomeComponent implements OnInit {
 
-  products: IProduct[];
+  //products: IProduct[];
 
-  constructor(private service: MockDataService){
+  constructor(){
 
   }
 
   ngOnInit() {
-    this.products = this.service.getData();
+    //this.products = this.service.getData();
   }
 
 }

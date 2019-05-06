@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MockDataService } from 'src/app/mock-data.service';
 import { IProduct } from 'src/app/interfaces/IProduct';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-products',
@@ -9,13 +9,14 @@ import { IProduct } from 'src/app/interfaces/IProduct';
 })
 export class ProductsComponent implements OnInit {
 
-  @Input() mockProducts: IProduct[];
+  products: IProduct[];
 
-  constructor(service: MockDataService) { 
-      this.mockProducts = service.getData();
-  }
+  constructor(private service: DataService) { }
 
   ngOnInit() {
+    this.service.getData().subscribe((data) => {      
+      this.products = data;
+    });
   }
 
 }

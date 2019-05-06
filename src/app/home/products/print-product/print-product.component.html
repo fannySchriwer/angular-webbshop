@@ -1,10 +1,5 @@
-<p>
-  print-product works!
-</p>
-
 <div class="product-column">
-  {{mockProducts.name}}
-
-  <!--Print product here with img, title, category and part of description-->
-
+  <img src="{{product.imageUrl}}" alt="movie poster">
+  <h2>{{product.name}}</h2>
+  <a [routerLink]="['/details', product.id]" routerLinkActive="active">Details</a>
 </div>

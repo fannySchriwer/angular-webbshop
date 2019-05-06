@@ -1,5 +1,4 @@
 export interface IProduct{
-
     id: number;
     name: string;
     description: string;
@@ -8,5 +7,4 @@ export interface IProduct{
     year: number;
     added: string;
     productCategory: [];
-    
 }

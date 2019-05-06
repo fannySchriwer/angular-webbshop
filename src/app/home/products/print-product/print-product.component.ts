@@ -8,6 +8,7 @@ import { IProduct } from '../../../interfaces/IProduct';
 })
 export class PrintProductComponent implements OnInit {
   @Input() mockProducts: IProduct;
+  @Input() product: IProduct;
 
   constructor(){
   }
