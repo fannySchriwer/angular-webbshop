@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IProduct } from '../interfaces/IProduct';
+import { MockDataService } from '../mock-data.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  //products: IProduct[];
+
+  constructor(){
+
+  }
 
   ngOnInit() {
+    //this.products = this.service.getData();
   }
 
 }

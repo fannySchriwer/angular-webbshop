@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule} from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -13,9 +14,8 @@ import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { AdminComponent } from './admin/admin.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 
-
 const appRoutes = [
-  /*{path: 'details/:id', component: DetailsComponent},*/
+  {path: 'details/:id', component: DetailsComponent},
   {path: 'home', component: HomeComponent}, 
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   /*{path: '**', component: NotfoundComponent}*/
@@ -36,7 +36,7 @@ const appRoutes = [
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   exports: [
     RouterModule
