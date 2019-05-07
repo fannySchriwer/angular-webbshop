@@ -10,6 +10,7 @@
         <p>{{product.description}}</p>
         <p><b>{{product.price}} SEK</b></p>
         <p><b>Release year: {{product.year}}</b></p>
+        <button type="button" (click)="addToCart({{product.id}})">Add to cart</button>
       </div>
     </div>
 

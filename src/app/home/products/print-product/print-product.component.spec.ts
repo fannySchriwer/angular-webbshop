@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrintProductComponent } from './print-product.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PrintProductComponent', () => {
   let component: PrintProductComponent;
@@ -8,7 +9,11 @@ describe('PrintProductComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrintProductComponent ]
+      declarations: [ 
+        PrintProductComponent],
+      imports: [
+        RouterTestingModule.withRoutes([])
+      ]
     })
     .compileComponents();
   }));
@@ -22,4 +27,5 @@ describe('PrintProductComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

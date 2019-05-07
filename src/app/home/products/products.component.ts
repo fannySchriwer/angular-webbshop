@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { DataService } from 'src/app/data.service';
 

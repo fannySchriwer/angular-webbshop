@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { ProductsComponent } from './products/products.component';
 import { PrintProductComponent } from './products/print-product/print-product.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 
 describe('HomeComponent', () => {
@@ -10,7 +12,11 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent, ProductsComponent, PrintProductComponent ]
+      declarations: [ 
+        HomeComponent, 
+        ProductsComponent, 
+        PrintProductComponent ],
+      imports: [ HttpClientModule, RouterTestingModule.withRoutes([])]
     })
     .compileComponents();
   }));

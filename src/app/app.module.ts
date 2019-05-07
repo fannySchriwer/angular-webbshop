@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule} from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -17,6 +16,7 @@ import { CartItemsComponent } from './cart-items/cart-items.component';
 const appRoutes = [
   {path: 'details/:id', component: DetailsComponent},
   {path: 'home', component: HomeComponent}, 
+  {path: 'shoppingcart', component: CartItemsComponent}, 
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   /*{path: '**', component: NotfoundComponent}*/
 ];

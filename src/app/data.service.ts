@@ -13,10 +13,12 @@ export class DataService implements IDataService {
 
    URL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
 
-  getData(): Observable<IProduct[]> {
-    console.log("Running data service");
-    
+  getData(): Observable<IProduct[]> {    
     return this.httpClient.get<IProduct[]>(this.URL);
+  }
+
+  addToCart(id: number) {
+
   }
 
 }
