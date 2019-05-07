@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IProduct } from './interfaces/IProduct';
 import { IDataService } from './interfaces/IDataService';
+import { Product } from 
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class DataService implements IDataService {
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
-  addToCart(id: number) {
-
+  addToCart(product: Product): Observable<IProduct[]> {
+    return product;
   }
 
 }
