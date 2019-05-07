@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IProduct } from '../interfaces/IProduct';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
+import { Product } from '../interfaces/Product';
 
 @Component({
   selector: 'app-details',
@@ -18,14 +19,21 @@ export class DetailsComponent implements OnInit {
       let productId = myParams['id'];
       this.getProduct(productId);
     });
+    
   }
 
-  productList: IProduct[] = [];
+  cartItems: Product[] = [];
+
+  onAddToCart(product: Product) {
+    this.service.addToCart(product);
+  }
+
+  productList: Product[] = [];
 
   getProduct(productId: number) {
 
     this.service.getData()
-    .subscribe((data: IProduct[]) => {
+    .subscribe((data: Product[]) => {
       for(let i = 0; i < data.length; i++){
         const product = data[i];
         const prodID = data[i].id;
