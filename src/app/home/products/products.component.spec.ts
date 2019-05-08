@@ -29,11 +29,5 @@ describe('ProductsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should return a list of type IProduct', () => {
-    fixture = TestBed.createComponent(ProductsComponent);
-    const app = fixture.debugElement.componentInstance;
-    let myTestList = app.getData();
-    expect(myTestList.length).toBeGreaterThan(0);
-  });
+  
 });

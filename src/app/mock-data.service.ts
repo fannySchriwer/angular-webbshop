@@ -18,7 +18,8 @@ export class MockDataService{
     return this.mockProducts;
   }
 
-  mockOrder: IOrder[] = [
+  mockOrder: IOrder[] = [];
+  order: IOrder = 
     {id: null, 
       companyId: 8, 
       created: "2019-04-08T00:00:00", 
@@ -27,7 +28,11 @@ export class MockDataService{
       totalPrice: 100,
       status: 0,
       orderRows:[{productId: 1, amount: 3}]
-    }];
+    };
+
+    sendOrder(order: IOrder) {
+      this.mockOrder.push(order);
+    }
 
   constructor() { }
 }
