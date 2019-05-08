@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { IProduct } from './interfaces/IProduct';
 import { IDataService } from './interfaces/IDataService';
 import { Product } from './interfaces/Product';
+import { Order } from './interfaces/Order';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,12 @@ export class DataService implements IDataService {
     this.cartItems.splice(this.cartItems.indexOf(product), 1);
   }
 
+  private orders: Order[] = [];
+  createOrder() {
+    
+  }
+
+  mapOrder() {
+    
+  }
 }

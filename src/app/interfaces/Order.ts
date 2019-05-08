@@ -10,5 +10,5 @@ export class Order implements IOrder {
         totalPrice: number;
         status: number;
         orderRows: [];
-        
+
 }
