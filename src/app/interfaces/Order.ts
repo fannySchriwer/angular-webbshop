@@ -9,6 +9,6 @@ export class Order implements IOrder {
         paymentMethod: string;
         totalPrice: number;
         status: number;
-        orderRows: [];
+        orderRows: [{productId: number, amount: number}];
 
 }
