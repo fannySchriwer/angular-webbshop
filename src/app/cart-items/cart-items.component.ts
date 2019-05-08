@@ -17,6 +17,10 @@ export class CartItemsComponent implements OnInit {
     this.collectedCartItems = this.service.getCartItems();
   }
 
+  //create a counter here that counts how many products
+  //create a detele button that conects to deletefunction
+  
+
 
 
 }

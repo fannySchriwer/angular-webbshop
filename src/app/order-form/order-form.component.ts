@@ -12,4 +12,8 @@ export class OrderFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  //create an order formgroup with all the engeskaper för IOrder
+  //collect counter for amount, total price and the product id from cart-items component
+  //send the form to db and show order-confirm component
+
 }
