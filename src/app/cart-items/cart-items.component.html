@@ -1,5 +1,15 @@
 <div class="cart-items" *ngFor="let item of collectedCartItems">
-  <p>{{item.name}}</p>
-  <img src="{{item.imageUrl}}" alt="movie poster">
-  <p>{{item.price}}</p>
+  <div class="cart-info">
+    <img src="{{item.imageUrl}}" alt="movie poster">
+  </div>
+
+  <div class="cart-counter">
+    <p>{{item.name}}</p>
+    <p>{{item.price}} SEK</p>
+    <input type="number" value="{{counter}}" placeholder="1" id="{{item.id}}" (keyup)="cartItemsCounter(item.id)">
+  </div>
 </div>
+
+{{counter}}
+
+<!--<button (click)="sendOrder()">Make order</button>-->
