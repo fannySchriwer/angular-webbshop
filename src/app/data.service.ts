@@ -26,7 +26,6 @@ export class DataService implements IDataService {
 
   addToCart(product: Product) {
     this.cartItems.push(product);
-    console.log(product);
   }
 
   removeFromCart(product: Product) {
