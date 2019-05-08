@@ -26,6 +26,9 @@ export class DataService implements IDataService {
   }
 
   addToCart(product: Product) {
+    if (this.cartItems.includes(product)) {
+      return;
+    } 
     this.cartItems.push(product);
   }
 
@@ -39,6 +42,6 @@ export class DataService implements IDataService {
   }
 
   mapOrder() {
-    
+
   }
 }
