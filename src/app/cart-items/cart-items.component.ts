@@ -17,13 +17,9 @@ export class CartItemsComponent implements OnInit {
     this.collectedCartItems = this.service.getCartItems();
   }
   
-  cartItemsCounter(id: number) {
+  cartItemsCounter() {
     let counter = 0;
-    for(let i = 0; i < this.collectedCartItems.length; i++) {
-      if(this.collectedCartItems[i].id == id) {
-         counter ++;
-      }
-    }
+    counter ++;
     console.log(counter);
     return counter;
   }
