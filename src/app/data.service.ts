@@ -20,22 +20,30 @@ export class DataService implements IDataService {
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
-  private cartItems: Product[] = [];
+  //private cartItems: Product[] = [];
+  private cartCounter = new BehaviorSubject(0);
+
 
   getCartItems() {
-    return this.cartItems;
+    //return this.cartItems;
+    return JSON.parse(sessionStorage.getItem("products"));
   }
 
-  addToCart(product: Product) {
-    if (this.cartItems.includes(product)) {
+  addToCart(addedCartItems: Product[]) {
+    sessionStorage.setItem("products", JSON.stringify(addedCartItems));
+    /*if (this.cartItems.includes(product)) {
       return;
     } 
-    this.cartItems.push(product);
+    this.cartItems.push(product);*/
   }
 
-  removeFromCart(product: Product) {
-    this.cartItems.splice(this.cartItems.indexOf(product), 1);
+  updateCartCount(counter: number) {
+    this.cartCounter.next(counter);
   }
+
+  /*removeFromCart(product: Product) {
+    this.cartItems.splice(this.cartItems.indexOf(product), 1);
+  }*/
 
   private orders: Order[] = [];
   createOrder() {

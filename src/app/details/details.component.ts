@@ -22,10 +22,24 @@ export class DetailsComponent implements OnInit {
     
   }
 
-  cartItems: Product[] = [];
+  
+
+  addedCartItems: Product[] = [];
 
   onAddToCart(product: Product) {
-    this.service.addToCart(product);
+    this.addedCartItems = this.service.getCartItems();
+    if(this.addedCartItems == null) {
+      this.addedCartItems = [];
+      this.addedCartItems.push(product);
+      this.service.addToCart(this.addedCartItems);
+      //this.service.addToCart(product);
+    } else {
+      let compProduct = this.addedCartItems.find(prod => prod.id == product.id);
+        if(compProduct == null) {
+          this.addedCartItems.push(product);
+          this.service.addToCart(this.addedCartItems);
+        }
+    }
   }
 
   productList: Product[] = [];
@@ -42,7 +56,6 @@ export class DetailsComponent implements OnInit {
           this.productList.push(product);
         }
       }
-
     });
 
   }
