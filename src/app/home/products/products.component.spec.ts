@@ -14,7 +14,7 @@ describe('ProductsComponent', () => {
       declarations: [ ProductsComponent, PrintProductComponent ],
       imports: [
         HttpClientModule,
-        RouterTestingModule.withRoutes([])
+        RouterTestingModule
       ]
     })
     .compileComponents();

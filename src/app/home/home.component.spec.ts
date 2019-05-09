@@ -16,7 +16,7 @@ describe('HomeComponent', () => {
         HomeComponent, 
         ProductsComponent, 
         PrintProductComponent ],
-      imports: [ HttpClientModule, RouterTestingModule.withRoutes([])]
+      imports: [ HttpClientModule, RouterTestingModule]
     })
     .compileComponents();
   }));

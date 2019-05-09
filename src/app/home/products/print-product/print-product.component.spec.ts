@@ -12,7 +12,7 @@ describe('PrintProductComponent', () => {
       declarations: [ 
         PrintProductComponent],
       imports: [
-        RouterTestingModule.withRoutes([])
+        RouterTestingModule
       ]
     })
     .compileComponents();
