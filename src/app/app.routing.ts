@@ -11,5 +11,5 @@ const APP_ROUTES: Routes = [
   /*{path: '**', component: NotfoundComponent}*/
 ];
 
-export const routing = RouterModule.forRoot(APP_ROUTES)
+export const routing = RouterModule.forRoot(APP_ROUTES);
 

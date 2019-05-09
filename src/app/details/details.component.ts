@@ -22,9 +22,8 @@ export class DetailsComponent implements OnInit {
     
   }
 
-  
-
   addedCartItems: Product[] = [];
+  alertMsg = "";
 
   onAddToCart(product: Product) {
     this.addedCartItems = this.service.getCartItems();
@@ -32,12 +31,15 @@ export class DetailsComponent implements OnInit {
       this.addedCartItems = [];
       this.addedCartItems.push(product);
       this.service.addToCart(this.addedCartItems);
+      this.alertMsg = "Added to cart";
       //this.service.addToCart(product);
     } else {
       let compProduct = this.addedCartItems.find(prod => prod.id == product.id);
         if(compProduct == null) {
           this.addedCartItems.push(product);
           this.service.addToCart(this.addedCartItems);
+        } else {
+          this.alertMsg = "Item already in cart";
         }
     }
   }
