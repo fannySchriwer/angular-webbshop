@@ -16,13 +16,6 @@ export class CartItemsComponent implements OnInit {
   ngOnInit() {
     this.collectedCartItems = this.service.getCartItems();
   }
-  
-  cartItemsCounter() {
-    let counter = 0;
-    counter ++;
-    console.log(counter);
-    return counter;
-  }
 
 
   //create a counter here that counts how many products

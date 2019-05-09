@@ -24,8 +24,11 @@ export class DetailsComponent implements OnInit {
 
   addedCartItems: Product[] = [];
   alertMsg = "";
+  cartCount: number;
 
   onAddToCart(product: Product) {
+    this.cartItemsCounter();
+    
     this.addedCartItems = this.service.getCartItems();
     if(this.addedCartItems == null) {
       this.addedCartItems = [];
@@ -42,6 +45,16 @@ export class DetailsComponent implements OnInit {
           this.alertMsg = "Item already in cart";
         }
     }
+  }
+
+  cartItemsCounter() {
+    this.cartCount = this.addedCartItems.length;
+    this.service.updateCartCount(this.cartCount);
+  }
+
+  showAlert() {
+//add code to show correct alert with bootstrap classes and run it in add to cart
+
   }
 
   productList: Product[] = [];
