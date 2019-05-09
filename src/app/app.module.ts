@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -12,14 +11,7 @@ import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { AdminComponent } from './admin/admin.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
-
-const appRoutes = [
-  {path: 'details/:id', component: DetailsComponent},
-  {path: 'home', component: HomeComponent}, 
-  {path: 'shoppingcart', component: CartItemsComponent}, 
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  /*{path: '**', component: NotfoundComponent}*/
-];
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -34,12 +26,9 @@ const appRoutes = [
     CartItemsComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
     BrowserModule,
-    HttpClientModule
-  ],
-  exports: [
-    RouterModule
+    HttpClientModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
