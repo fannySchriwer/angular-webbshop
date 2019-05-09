@@ -1,15 +1,20 @@
-<div class="cart-items" *ngFor="let item of collectedCartItems">
-  <div class="cart-info">
-    <img src="{{item.imageUrl}}" alt="movie poster">
-  </div>
+<div class="row">
+  <div class="col-12 col-md-6 card" *ngFor="let item of collectedCartItems">
+    
+    <div class="row">
+      <div class="col-10 col-md-4">
+        <img src="{{item.imageUrl}}" alt="movie poster">
+      </div>
 
-  <div class="cart-counter">
-    <p>{{item.name}}</p>
-    <p>{{item.price}} SEK</p>
-    <input type="number" value="{{counter}}" placeholder="1" id="{{item.id}}" (keyup)="cartItemsCounter()">
+      <div class="col-10 col-md-8">
+        <p>{{item.name}}</p>
+        <p>{{item.price}} SEK</p>
+        <input type="number" value="{{cartItem.quantity}}" placeholder="{{cartItem.quantity}}" id="{{item.id}}" (keyup)="addQuantity(item)">
+        <button (click)="onRemoveItem(item)">Delete</button>
+      </div>
+    </div>
+
   </div>
 </div>
-
-{{counter}}
 
 <!--<button (click)="sendOrder()">Make order</button>-->

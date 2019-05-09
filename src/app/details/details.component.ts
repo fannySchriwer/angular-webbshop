@@ -34,7 +34,7 @@ export class DetailsComponent implements OnInit {
       this.service.addToCart(this.addedCartItems);
       this.service.updateCartCount();
       this.alertMsg = "Added to cart";
-      //this.service.addToCart(product);
+      //$("#addToCartBtn").alert();
     } else {
       let compProduct = this.addedCartItems.find(prod => prod.id == product.id);
         if(compProduct == null) {

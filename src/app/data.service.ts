@@ -45,10 +45,6 @@ export class DataService implements IDataService {
     return this.counter;
   }
 
-  /*removeFromCart(product: Product) {
-    this.cartItems.splice(this.cartItems.indexOf(product), 1);
-  }*/
-
   private orders: Order[] = [];
   createOrder() {
     

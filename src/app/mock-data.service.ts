@@ -34,6 +34,14 @@ export class MockDataService{
       this.mockOrder.push(order);
     }
 
+    addToCart(mockProducts: IProduct[]) {
+      sessionStorage.setItem("products", JSON.stringify(mockProducts));
+    }
+
+    getCartItems() {
+      return JSON.parse(sessionStorage.getItem("products"));
+    }
+
 
   constructor() { }
 }
