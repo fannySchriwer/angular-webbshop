@@ -27,13 +27,12 @@ export class DetailsComponent implements OnInit {
   cartCount: number;
 
   onAddToCart(product: Product) {
-    this.cartItemsCounter();
-    
     this.addedCartItems = this.service.getCartItems();
     if(this.addedCartItems == null) {
       this.addedCartItems = [];
       this.addedCartItems.push(product);
       this.service.addToCart(this.addedCartItems);
+      this.service.updateCartCount();
       this.alertMsg = "Added to cart";
       //this.service.addToCart(product);
     } else {
@@ -41,15 +40,11 @@ export class DetailsComponent implements OnInit {
         if(compProduct == null) {
           this.addedCartItems.push(product);
           this.service.addToCart(this.addedCartItems);
+          this.service.updateCartCount();
         } else {
           this.alertMsg = "Item already in cart";
         }
     }
-  }
-
-  cartItemsCounter() {
-    this.cartCount = this.addedCartItems.length;
-    this.service.updateCartCount(this.cartCount);
   }
 
   showAlert() {

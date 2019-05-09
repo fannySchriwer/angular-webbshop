@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,12 @@ import { Component, Input } from '@angular/core';
 export class AppComponent {
   title = 'webbshop';
 
-  @Input() cartCounter: number;
+  constructor(private service: DataService) {}
+
+  currentCartCounter: number;
+  
+  ngOnInit() {
+    this.currentCartCounter = this.service.updateCartCount();
+  }
+
 }

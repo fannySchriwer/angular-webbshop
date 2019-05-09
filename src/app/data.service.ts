@@ -5,7 +5,6 @@ import { IProduct } from './interfaces/IProduct';
 import { IDataService } from './interfaces/IDataService';
 import { Product } from './interfaces/Product';
 import { Order } from './interfaces/Order';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,10 @@ export class DataService implements IDataService {
   }
 
   //private cartItems: Product[] = [];
-  private cartCounter = new BehaviorSubject(0);
+ // private cartCounter = new BehaviorSubject(0);
+ // currentCounter = this.cartCounter.asObservable();
+ cartCounter = [];
+ counter: number;
 
 
   getCartItems() {
@@ -37,8 +39,10 @@ export class DataService implements IDataService {
     this.cartItems.push(product);*/
   }
 
-  updateCartCount(counter: number) {
-    this.cartCounter.next(counter);
+  updateCartCount() {
+    this.cartCounter = this.getCartItems();
+    this.counter = this.cartCounter.length;
+    return this.counter;
   }
 
   /*removeFromCart(product: Product) {
