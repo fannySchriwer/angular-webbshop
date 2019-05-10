@@ -31,10 +31,23 @@ export class CartItemsComponent implements OnInit {
   addQuantity(product: Product) {
     this.cartItem.id = product.id;
     this.cartItem.quantity = parseInt(this.quantityValue);
-    this.cartItemsToStorage.push(this.cartItem);
-    this.service.addCartItemToSTorage(this.cartItemsToStorage); 
   }
 
+  addToStorage(item) {
+    
+    this.cartItemsToStorage = this.service.getCartItemQuantity();
+    let compItem = this.cartItemsToStorage.find(p => p.id == item.id);
+
+      if(compItem == null) {
+        this.cartItemsToStorage = [];
+        this.cartItemsToStorage.push(this.cartItem);
+        console.log(this.cartItemsToStorage);
+        this.service.addCartItemToStorage(this.cartItemsToStorage); 
+      } else {
+        console.log("hello");
+      }
+  }
+   // this.cartItemsToStorage.push(this.cartItem);
   
   /*onGetQuantity(item: CartIteam) {
     this.cartItemsToStorage = this.service.getCartItemQuantity();

@@ -38,7 +38,7 @@ export class DataService implements IDataService {
     sessionStorage.setItem("products", JSON.stringify(addedCartItems));
   }
 
-  addCartItemToSTorage(cartItem: CartItem[]) {
+  addCartItemToStorage(cartItem: CartItem[]) {
     sessionStorage.setItem("cartItemsQuantity", JSON.stringify(cartItem));
   }
 
