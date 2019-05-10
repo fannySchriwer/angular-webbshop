@@ -31,23 +31,27 @@ export class CartItemsComponent implements OnInit {
   addQuantity(product: Product) {
     this.cartItem.id = product.id;
     this.cartItem.quantity = parseInt(this.quantityValue);
+    this.addToStorage(this.cartItem);
   }
 
   addToStorage(item) {
+    console.log(item);
     
     this.cartItemsToStorage = this.service.getCartItemQuantity();
-    let compItem = this.cartItemsToStorage.find(p => p.id == item.id);
 
-      if(compItem == null) {
-        this.cartItemsToStorage = [];
-        this.cartItemsToStorage.push(this.cartItem);
-        console.log(this.cartItemsToStorage);
-        this.service.addCartItemToStorage(this.cartItemsToStorage); 
-      } else {
-        console.log("hello");
-      }
+    if(this.cartItemsToStorage == null) {
+      this.cartItemsToStorage = [];
+      this.cartItemsToStorage.push(this.cartItem);
+      console.log(this.cartItemsToStorage);
+      this.service.addCartItemToStorage(this.cartItemsToStorage); 
+    }else {
+      let compItem = this.cartItemsToStorage.find(p => p.id == item.id);
+        if(compItem !== null) {
+          this.cartItemsToStorage.push(this.cartItem);
+          this.service.addCartItemToStorage(this.cartItemsToStorage);
+        }
+    }
   }
-   // this.cartItemsToStorage.push(this.cartItem);
   
   /*onGetQuantity(item: CartIteam) {
     this.cartItemsToStorage = this.service.getCartItemQuantity();
