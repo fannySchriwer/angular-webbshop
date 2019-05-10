@@ -7,7 +7,6 @@ import { IProduct } from '../../../interfaces/IProduct';
   styleUrls: ['./print-product.component.css']
 })
 export class PrintProductComponent implements OnInit {
-  @Input() mockProducts: IProduct;
   @Input() product: IProduct;
 
   constructor(){

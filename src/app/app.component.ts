@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'webbshop';
+
+  constructor(private service: DataService) {}
+
+  currentCartCounter: number;
+  
+  ngOnInit() {
+    this.currentCartCounter = this.service.updateCartCount();
+  }
+
 }

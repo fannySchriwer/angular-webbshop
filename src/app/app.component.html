@@ -1,13 +1,13 @@
-<header>
-  <nav>
-    <ul>
-      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+<header class="row">
+  <nav class="col-8 col-md-6">
+    <ul class="nav nav-pill">
+      <li routerLinkActive="active"><a routerLink="home" routerLinkActive="active">Home</a></li>
+      <li routerLinkActive="active"><a routerLink="/shoppingcart" routerLinkActive="active">Shoppingcart</a>({{currentCartCounter}})</li>
     </ul>
   </nav>
 </header>
+
 <router-outlet></router-outlet>
-
-
 
 <footer></footer>
 
