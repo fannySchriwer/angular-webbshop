@@ -11,17 +11,17 @@ import { isNgTemplate } from '@angular/compiler';
 })
 export class CartItemsComponent implements OnInit {
 
-  collectedCartItems: Product[] = [];
-  cartItem = new CartItem;
-  cartItemCount: number = 1;
-
+  
   constructor(private service: DataService) { }
-
+  
   ngOnInit() {
     this.collectedCartItems = this.service.getCartItems();
   }
-
+  
   quantityValue = "";
+  cartItemsToStorage: CartItem[] = [];
+  collectedCartItems: Product[] = [];
+  cartItem = new CartItem;
 
   getInputQuantity(quantity: string, item: Product)  {
     this.quantityValue = quantity;
@@ -31,16 +31,29 @@ export class CartItemsComponent implements OnInit {
   addQuantity(product: Product) {
     this.cartItem.id = product.id;
     this.cartItem.quantity = parseInt(this.quantityValue);
-    return this.cartItem; 
+    this.cartItemsToStorage.push(this.cartItem);
+    this.service.addCartItemToSTorage(this.cartItemsToStorage); 
   }
+
+  
+  /*onGetQuantity(item: CartIteam) {
+    this.cartItemsToStorage = this.service.getCartItemQuantity();
+    if(this.cartItemsToStorage == null) {
+      this.cartItemsToStorage = [];
+      this.cartItemsToStorage.push(item);
+      this.service.addCartItemToSTorage(this.cartItemsToStorage);
+    } else {
+      let compProduct = this.cartItemsToStorage.find(prod => prod.id == product.id);
+        if(compProduct == null) {
+          this.cartItemsToStorage.push(product);
+          this.service.addToCart(this.cartItemsToStorage);
+        }
+    }
+  }*/
 
   onRemoveItem(item) {
     this.collectedCartItems.splice(this.collectedCartItems.indexOf(item), 1);
     this.service.addToCart(this.collectedCartItems);
-  }
-
-  removeQuantity() {
-
   }
 
   //create a counter here that counts how many products

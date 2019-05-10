@@ -5,6 +5,7 @@ import { IProduct } from './interfaces/IProduct';
 import { IDataService } from './interfaces/IDataService';
 import { Product } from './interfaces/Product';
 import { Order } from './interfaces/Order';
+import { CartItem } from './interfaces/CartItem';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,16 @@ export class DataService implements IDataService {
     return JSON.parse(sessionStorage.getItem("products"));
   }
 
+  getCartItemQuantity() {
+    return JSON.parse(sessionStorage.getItem("cartItemsQuantity"));
+  }
+
   addToCart(addedCartItems: Product[]) {
     sessionStorage.setItem("products", JSON.stringify(addedCartItems));
+  }
+
+  addCartItemToSTorage(cartItem: CartItem[]) {
+    sessionStorage.setItem("cartItemsQuantity", JSON.stringify(cartItem));
   }
 
   updateCartCount() {
@@ -44,7 +53,4 @@ export class DataService implements IDataService {
     
   }
 
-  mapOrder() {
-
-  }
 }
