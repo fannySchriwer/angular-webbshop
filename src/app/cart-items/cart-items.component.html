@@ -9,8 +9,9 @@
       <div class="col-10 col-md-8">
         <p>{{item.name}}</p>
         <p>{{item.price}} SEK</p>
-        <input type="number" value="{{cartItem.quantity}}" placeholder="{{cartItem.quantity}}" id="{{item.id}}" (keyup)="addQuantity(item)">
+        <input type="number" #quantity placeholder="1" id="{{item.id}}" (keyup)="getInputQuantity(quantity.value, item)">
         <button (click)="onRemoveItem(item)">Delete</button>
+        {{quantityValue}}
       </div>
     </div>
 

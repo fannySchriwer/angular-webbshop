@@ -21,11 +21,16 @@ export class CartItemsComponent implements OnInit {
     this.collectedCartItems = this.service.getCartItems();
   }
 
+  quantityValue = "";
+
+  getInputQuantity(quantity: string, item: Product)  {
+    this.quantityValue = quantity;
+    this.addQuantity(item);
+  }
 
   addQuantity(product: Product) {
     this.cartItem.id = product.id;
-    this.cartItem.quantity = this.cartItemCount+1;
-    console.log(this.cartItem);
+    this.cartItem.quantity = parseInt(this.quantityValue);
     return this.cartItem; 
   }
 
