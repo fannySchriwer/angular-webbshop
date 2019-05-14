@@ -30,16 +30,16 @@ export class DataService implements IDataService {
     return JSON.parse(sessionStorage.getItem("products"));
   }
 
-  getCartItemQuantity() {
-    return JSON.parse(sessionStorage.getItem("cartItemsQuantity"));
+  getCartItemFromStorage() {
+    return JSON.parse(sessionStorage.getItem("cartItems"));
   }
 
   addToCart(addedCartItems: Product[]) {
     sessionStorage.setItem("products", JSON.stringify(addedCartItems));
   }
 
-  addCartItemToStorage(cartItem: CartItem[]) {
-    sessionStorage.setItem("cartItemsQuantity", JSON.stringify(cartItem));
+  addCartItemToStorage(itemsToStorage: CartItem[]) {
+    sessionStorage.setItem("cartItems", JSON.stringify(itemsToStorage));
   }
 
   updateCartCount() {

@@ -32,4 +32,12 @@ describe('MockDataService', () => {
 
   });
 
+  it('should add an object to a list', () => {
+    const service: MockDataService = TestBed.get(MockDataService);
+    expect(service.mockItems.length).toBe(0);
+    service.addItemToCart(service.item);
+    expect(service.mockItems.length).toBe(1);
+
+  });
+
 });

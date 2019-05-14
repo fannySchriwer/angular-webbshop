@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Product } from '../interfaces/Product';
 import { CartItem } from '../interfaces/CartItem';
-import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-cart-items',
@@ -16,40 +15,41 @@ export class CartItemsComponent implements OnInit {
   
   ngOnInit() {
     this.collectedCartItems = this.service.getCartItems();
+    this.cartItemsToStorage = this.service.getCartItemFromStorage();
   }
   
-  quantityValue = "";
+  quantityValue = "1";
   cartItemsToStorage: CartItem[] = [];
   collectedCartItems: Product[] = [];
-  cartItem = new CartItem;
+  //cartItem = new CartItem;
 
-  getInputQuantity(quantity: string, item: Product)  {
+ /* getInputQuantity(quantity: string, item: Product)  {
     this.quantityValue = quantity;
-    this.addQuantity(item);
+    this.addQuantity(item, +quantity);
   }
 
-  addQuantity(product: Product) {
+  addQuantity(product: Product, quantity: number) {
     this.cartItem.id = product.id;
     this.cartItem.quantity = parseInt(this.quantityValue);
-    this.addToStorage(this.cartItem);
+    this.addToStorage(this.cartItem, quantity);
   }
 
-  addToStorage(item) {
-    console.log(item);
-    
-    this.cartItemsToStorage = this.service.getCartItemQuantity();
+  addToStorage(item: CartItem, quantity: number) {
 
     if(this.cartItemsToStorage == null) {
       this.cartItemsToStorage = [];
       this.cartItemsToStorage.push(this.cartItem);
-      console.log(this.cartItemsToStorage);
       this.service.addCartItemToStorage(this.cartItemsToStorage); 
-    }else {
-      let compItem = this.cartItemsToStorage.find(p => p.id == item.id);
-        if(compItem !== null) {
+    } else {
+      for(let i = 0; i < this.cartItemsToStorage.length; i++) {
+        if(this.cartItemsToStorage[i].id === item.id) {
+          this.cartItemsToStorage[i].quantity = quantity;
+        }
+        else {
           this.cartItemsToStorage.push(this.cartItem);
           this.service.addCartItemToStorage(this.cartItemsToStorage);
         }
+      }
     }
   }
   
@@ -72,11 +72,5 @@ export class CartItemsComponent implements OnInit {
     this.collectedCartItems.splice(this.collectedCartItems.indexOf(item), 1);
     this.service.addToCart(this.collectedCartItems);
   }
-
-  //create a counter here that counts how many products
-  //create a detele button that conects to deletefunction
-  
-
-
 
 }
