@@ -26,24 +26,24 @@ export class DataService implements IDataService {
   cartCounter = [];
   counter: number;
 
-  getCartItems() {
+  getProductsFromStorage() {
     return JSON.parse(sessionStorage.getItem("products"));
   }
 
-  getCartItemFromStorage() {
+  getCartItemsFromStorage() {
     return JSON.parse(sessionStorage.getItem("cartItems"));
   }
 
-  addToCart(addedCartItems: Product[]) {
+  addProductsToStorage(addedCartItems: Product[]) {
     sessionStorage.setItem("products", JSON.stringify(addedCartItems));
   }
 
-  addCartItemToStorage(itemsToStorage: CartItem[]) {
+  addCartItemsToStorage(itemsToStorage: CartItem[]) {
     sessionStorage.setItem("cartItems", JSON.stringify(itemsToStorage));
   }
 
   updateCartCount() {
-    this.cartCounter = this.getCartItems();
+    this.cartCounter = this.getProductsFromStorage();
     this.counter = this.cartCounter.length;
     return this.counter;
   }

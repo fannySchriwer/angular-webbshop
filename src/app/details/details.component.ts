@@ -38,17 +38,17 @@ export class DetailsComponent implements OnInit {
 
     this.alertMsg = "Added to cart";
     this.itemsToStorage.push(this.cartItem);
-    this.service.addCartItemToStorage(this.itemsToStorage);
+    this.service.addCartItemsToStorage(this.itemsToStorage);
   }
 
   addProduct(product: Product) {
     this.alertMsg = "Added to cart";
     this.productsToStorage.push(product);
-    this.service.addToCart(this.productsToStorage);
+    this.service.addProductsToStorage(this.productsToStorage);
   }
 
   onAddToCart(quantity: number, product: Product) {
-    this.productsToStorage = this.service.getCartItems();
+    this.productsToStorage = this.service.getProductsFromStorage();
 
     if(this.productsToStorage === null) {
       this.productsToStorage = [];
@@ -58,7 +58,7 @@ export class DetailsComponent implements OnInit {
     } else {
       let foundItem: boolean = false;
       let foundProduct: boolean = false;
-      this.itemsToStorage = this.service.getCartItemFromStorage();
+      this.itemsToStorage = this.service.getCartItemsFromStorage();
 
       if(this.itemsToStorage !== null) {
 
@@ -74,7 +74,7 @@ export class DetailsComponent implements OnInit {
               foundItem = true;
             }
           }
-          this.service.addCartItemToStorage(this.itemsToStorage);
+          this.service.addCartItemsToStorage(this.itemsToStorage);
         }     
       } 
     }     
@@ -88,7 +88,7 @@ export class DetailsComponent implements OnInit {
   }
 
   showAlert() {
-//add code to show correct alert with bootstrap classes and run it in add to cart
+    //add code to show correct alert with bootstrap classes and run it in add to cart
   }
 
   getProduct(productId: number) {
