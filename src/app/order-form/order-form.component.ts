@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { CartItem } from '../interfaces/CartItem';
+import { Product } from '../interfaces/Product';
+import { Order } from '../interfaces/Order';
 
 @Component({
   selector: 'app-order-form',
@@ -6,14 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit {
+  totalAmount: number;
+  collectedCartItems: CartItem[] = [];
+  collectedProducts: Product[] = [];
+  orders: Order[] = [];
 
-  constructor() { }
-
+  constructor(private service: DataService) { }
+  
   ngOnInit() {
+    this.collectedProducts = this.service.getProductsFromStorage();
+    this.collectedCartItems = this.service.getCartItemsFromStorage();
+    this.getTotalAmount();
+  }
+
+  getTotalAmount() {
+    var sum = this.collectedCartItems.reduce((sum, item) => sum + item.totalPrice, 0);
+    console.log(sum);
   }
 
   //create an order formgroup with all the engeskaper för IOrder
-  //collect counter for amount, total price and the product id from cart-items component
   //send the form to db and show order-confirm component
 
 }
