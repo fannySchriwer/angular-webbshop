@@ -20,9 +20,6 @@ export class DataService implements IDataService {
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
-  //private cartItems: Product[] = [];
-  // private cartCounter = new BehaviorSubject(0);
-  // currentCounter = this.cartCounter.asObservable();
   cartCounter = [];
   counter: number;
 

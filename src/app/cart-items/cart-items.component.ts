@@ -21,7 +21,7 @@ export class CartItemsComponent implements OnInit {
   
   collectedCartItems: CartItem[] = [];
   collectedProducts: Product[] = [];
-  orders: Order[] = [];
+
 
   onRemoveItem(item) {
     this.collectedProducts.splice(this.collectedProducts.indexOf(item), 1);
