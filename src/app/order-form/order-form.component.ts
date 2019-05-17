@@ -20,12 +20,14 @@ export class OrderFormComponent implements OnInit {
   ngOnInit() {
     this.collectedProducts = this.service.getProductsFromStorage();
     this.collectedCartItems = this.service.getCartItemsFromStorage();
-    this.getTotalAmount();
+    var sum = this.getTotalAmount();
   }
 
+  sum: number;
+
   getTotalAmount() {
-    var sum = this.collectedCartItems.reduce((sum, item) => sum + item.totalPrice, 0);
-    console.log(sum);
+    this.sum = this.collectedCartItems.reduce((sum, item) => sum + item.totalPrice, 0);
+    return this.sum;
   }
 
   //create an order formgroup with all the engeskaper för IOrder
