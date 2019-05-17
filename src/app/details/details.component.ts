@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IProduct } from '../interfaces/IProduct';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { Product } from '../interfaces/Product';
+import { CartItem } from '../interfaces/CartItem';
 
 @Component({
   selector: 'app-details',
@@ -22,40 +22,76 @@ export class DetailsComponent implements OnInit {
     
   }
 
-  addedCartItems: Product[] = [];
+  productsToShow: Product[] = [];
+  productsToStorage: Product[] = [];
+  itemsToStorage: CartItem[] = [];
   alertMsg = "";
-  cartCount: number;
+  cartItem = new CartItem();
 
-  onAddToCart(product: Product) {
-    this.addedCartItems = this.service.getCartItems();
-    if(this.addedCartItems == null) {
-      this.addedCartItems = [];
-      this.addedCartItems.push(product);
-      this.service.addToCart(this.addedCartItems);
-      this.service.updateCartCount();
-      this.alertMsg = "Added to cart";
-      //$("#addToCartBtn").alert();
+
+  addCartItem(quantity: number, product: Product) {
+    this.cartItem = {
+      id: product.id,
+      quantity: +quantity,
+      totalPrice: +quantity*product.price
+    };
+
+    this.alertMsg = "Added to cart";
+    this.itemsToStorage.push(this.cartItem);
+    this.service.addCartItemsToStorage(this.itemsToStorage);
+  }
+
+  addProduct(product: Product) {
+    this.alertMsg = "Added to cart";
+    this.productsToStorage.push(product);
+    this.service.addProductsToStorage(this.productsToStorage);
+  }
+
+  onAddToCart(quantity: number, product: Product) {
+    this.productsToStorage = this.service.getProductsFromStorage();
+
+    if(this.productsToStorage === null) {
+      this.productsToStorage = [];
+      this.addProduct(product);
+      this.addCartItem(quantity, product);
+
     } else {
-      let compProduct = this.addedCartItems.find(prod => prod.id == product.id);
-        if(compProduct == null) {
-          this.addedCartItems.push(product);
-          this.service.addToCart(this.addedCartItems);
-          this.service.updateCartCount();
-        } else {
-          this.alertMsg = "Item already in cart";
-        }
+      let foundItem: boolean = false;
+      let foundProduct: boolean = false;
+      this.itemsToStorage = this.service.getCartItemsFromStorage();
+
+      if(this.itemsToStorage !== null) {
+
+      for(let i = 0; i < this.productsToStorage.length; i++) {
+        if(this.productsToStorage[i].id === product.id)  {
+          foundProduct = true;
+
+          for(let i = 0; i < this.itemsToStorage.length; i++) {    
+            if(this.itemsToStorage[i].id === product.id) {
+              this.itemsToStorage[i].quantity = +quantity;
+              this.itemsToStorage[i].totalPrice = +quantity*product.price;
+              this.alertMsg = "Item already in cart, updated quantity";
+              foundItem = true;
+            }
+          }
+          this.service.addCartItemsToStorage(this.itemsToStorage);
+        }     
+      } 
+    }     
+      if(foundItem === false) {
+        this.addCartItem(quantity, product);
+      }  
+      if(foundProduct === false) {
+        this.addProduct(product);
+      }   
     }
   }
 
   showAlert() {
-//add code to show correct alert with bootstrap classes and run it in add to cart
-
+    //add code to show correct alert with bootstrap classes and run it in add to cart
   }
 
-  productList: Product[] = [];
-
   getProduct(productId: number) {
-
     this.service.getData()
     .subscribe((data: Product[]) => {
       for(let i = 0; i < data.length; i++){
@@ -63,11 +99,10 @@ export class DetailsComponent implements OnInit {
         const prodID = data[i].id;
         
         if(prodID == productId) {
-          this.productList.push(product);
+          this.productsToShow.push(product);
         }
       }
     });
-
   }
 
 }

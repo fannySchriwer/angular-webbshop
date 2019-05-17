@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Product } from '../interfaces/Product';
 import { CartItem } from '../interfaces/CartItem';
-import { isNgTemplate } from '@angular/compiler';
+import { Order } from '../interfaces/Order';
 
 @Component({
   selector: 'app-cart-items',
@@ -15,51 +15,17 @@ export class CartItemsComponent implements OnInit {
   constructor(private service: DataService) { }
   
   ngOnInit() {
-    this.collectedCartItems = this.service.getCartItems();
+    this.collectedProducts = this.service.getProductsFromStorage();
+    this.collectedCartItems = this.service.getCartItemsFromStorage();
   }
   
-  quantityValue = "";
-  cartItemsToStorage: CartItem[] = [];
-  collectedCartItems: Product[] = [];
-  cartItem = new CartItem;
+  collectedCartItems: CartItem[] = [];
+  collectedProducts: Product[] = [];
 
-  getInputQuantity(quantity: string, item: Product)  {
-    this.quantityValue = quantity;
-    this.addQuantity(item);
-  }
-
-  addQuantity(product: Product) {
-    this.cartItem.id = product.id;
-    this.cartItem.quantity = parseInt(this.quantityValue);
-    this.cartItemsToStorage.push(this.cartItem);
-    this.service.addCartItemToSTorage(this.cartItemsToStorage); 
-  }
-
-  
-  /*onGetQuantity(item: CartIteam) {
-    this.cartItemsToStorage = this.service.getCartItemQuantity();
-    if(this.cartItemsToStorage == null) {
-      this.cartItemsToStorage = [];
-      this.cartItemsToStorage.push(item);
-      this.service.addCartItemToSTorage(this.cartItemsToStorage);
-    } else {
-      let compProduct = this.cartItemsToStorage.find(prod => prod.id == product.id);
-        if(compProduct == null) {
-          this.cartItemsToStorage.push(product);
-          this.service.addToCart(this.cartItemsToStorage);
-        }
-    }
-  }*/
 
   onRemoveItem(item) {
-    this.collectedCartItems.splice(this.collectedCartItems.indexOf(item), 1);
-    this.service.addToCart(this.collectedCartItems);
+    this.collectedProducts.splice(this.collectedProducts.indexOf(item), 1);
+    this.service.addProductsToStorage(this.collectedProducts);
   }
-
-  //create a counter here that counts how many products
-  //create a detele button that conects to deletefunction
-  
-
-
 
 }

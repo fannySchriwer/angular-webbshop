@@ -28,4 +28,8 @@ describe('PrintProductComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should return one product', () => {
+    
+  });
+
 });

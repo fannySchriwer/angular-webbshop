@@ -20,30 +20,27 @@ export class DataService implements IDataService {
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
-  //private cartItems: Product[] = [];
-  // private cartCounter = new BehaviorSubject(0);
-  // currentCounter = this.cartCounter.asObservable();
   cartCounter = [];
   counter: number;
 
-  getCartItems() {
+  getProductsFromStorage() {
     return JSON.parse(sessionStorage.getItem("products"));
   }
 
-  getCartItemQuantity() {
-    return JSON.parse(sessionStorage.getItem("cartItemsQuantity"));
+  getCartItemsFromStorage() {
+    return JSON.parse(sessionStorage.getItem("cartItems"));
   }
 
-  addToCart(addedCartItems: Product[]) {
+  addProductsToStorage(addedCartItems: Product[]) {
     sessionStorage.setItem("products", JSON.stringify(addedCartItems));
   }
 
-  addCartItemToSTorage(cartItem: CartItem[]) {
-    sessionStorage.setItem("cartItemsQuantity", JSON.stringify(cartItem));
+  addCartItemsToStorage(itemsToStorage: CartItem[]) {
+    sessionStorage.setItem("cartItems", JSON.stringify(itemsToStorage));
   }
 
   updateCartCount() {
-    this.cartCounter = this.getCartItems();
+    this.cartCounter = this.getProductsFromStorage();
     this.counter = this.cartCounter.length;
     return this.counter;
   }
