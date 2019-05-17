@@ -5,7 +5,7 @@ import { IProduct } from './interfaces/IProduct';
 import { IDataService } from './interfaces/IDataService';
 import { Product } from './interfaces/Product';
 import { Order } from './interfaces/Order';
-import { forEach } from '@angular/router/src/utils/collection';
+import { CartItem } from './interfaces/CartItem';
 
 @Injectable({
   providedIn: 'root'
@@ -20,21 +20,29 @@ export class DataService implements IDataService {
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
-  private cartItems: Product[] = [];
+  cartCounter = [];
+  counter: number;
 
-  getCartItems() {
-    return this.cartItems;
+  getProductsFromStorage() {
+    return JSON.parse(sessionStorage.getItem("products"));
   }
 
-  addToCart(product: Product) {
-    if (this.cartItems.includes(product)) {
-      return;
-    } 
-    this.cartItems.push(product);
+  getCartItemsFromStorage() {
+    return JSON.parse(sessionStorage.getItem("cartItems"));
   }
 
-  removeFromCart(product: Product) {
-    this.cartItems.splice(this.cartItems.indexOf(product), 1);
+  addProductsToStorage(addedCartItems: Product[]) {
+    sessionStorage.setItem("products", JSON.stringify(addedCartItems));
+  }
+
+  addCartItemsToStorage(itemsToStorage: CartItem[]) {
+    sessionStorage.setItem("cartItems", JSON.stringify(itemsToStorage));
+  }
+
+  updateCartCount() {
+    this.cartCounter = this.getProductsFromStorage();
+    this.counter = this.cartCounter.length;
+    return this.counter;
   }
 
   private orders: Order[] = [];
@@ -42,7 +50,4 @@ export class DataService implements IDataService {
     
   }
 
-  mapOrder() {
-
-  }
 }

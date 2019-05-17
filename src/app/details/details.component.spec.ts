@@ -14,10 +14,9 @@ describe('DetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DetailsComponent ],
       providers: [ 
-        { provide: DataService, useClass: MockDataService }, 
-        { provide: ActivatedRoute, useClass: RouterTestingModule }],
+        { provide: DataService, useClass: MockDataService }],
       imports: [ 
-        RouterTestingModule.withRoutes([])
+        RouterTestingModule
       ]
     })
     .compileComponents();

@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import { IProduct } from './interfaces/IProduct';
 import { IOrder } from './interfaces/IOrder';
+import { CartItem } from './interfaces/CartItem';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,31 @@ export class MockDataService{
 
     sendOrder(order: IOrder) {
       this.mockOrder.push(order);
+    }
+
+    addToCart(mockProducts: IProduct[]) {
+      sessionStorage.setItem("products", JSON.stringify(mockProducts));
+    }
+
+    getCartItems() {
+      return JSON.parse(sessionStorage.getItem("products"));
+    }
+
+    mockItems: CartItem[] = [];
+    item: CartItem = {id: 2, quantity: 1, totalPrice: 200};
+
+    addItemToCart(item: CartItem) {
+     this.mockItems = this.mockItems;
+      if(this.mockItems == null) {
+        this.mockItems.push(item);      
+      } /*else {
+        for(let i = 0; i < this.mockItems.length; i++) {
+          if(this.mockItems[i].id === item.id) {
+            this.mockItems[i].quantity = item.quantity;
+            return this.mockItems;
+          }
+        }
+      }*/
     }
 
 

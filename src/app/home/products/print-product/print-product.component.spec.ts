@@ -12,7 +12,7 @@ describe('PrintProductComponent', () => {
       declarations: [ 
         PrintProductComponent],
       imports: [
-        RouterTestingModule.withRoutes([])
+        RouterTestingModule
       ]
     })
     .compileComponents();
@@ -26,6 +26,10 @@ describe('PrintProductComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should return one product', () => {
+    
   });
 
 });

@@ -2,3 +2,7 @@ header, footer {
     height: 5em;
     background-color: grey;
 }
+
+nav li {
+    padding: 10px;
+}

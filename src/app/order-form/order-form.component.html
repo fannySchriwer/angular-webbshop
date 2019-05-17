@@ -1,3 +1,25 @@
-<p>
-  order-form works!
-</p>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Movie</th>
+      <th scope="col">Price</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Total price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of collectedProducts; let i = index">
+      <th scope="row">{{product.name}}</th>
+      <td>{{product.price}}</td>
+      <td>{{collectedCartItems[i].quantity}}</td>
+      <td>{{collectedCartItems[i].totalPrice}}</td>
+    </tr>
+    <tr>
+      <th>Total Price</th>
+      <td></td>
+      <td></td>
+      <td>{{sum}}</td>
+    </tr>
+  </tbody>
+</table>

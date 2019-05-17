@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Product } from '../interfaces/Product';
+import { CartItem } from '../interfaces/CartItem';
+import { Order } from '../interfaces/Order';
 
 @Component({
   selector: 'app-cart-items',
@@ -9,26 +11,21 @@ import { Product } from '../interfaces/Product';
 })
 export class CartItemsComponent implements OnInit {
 
-  collectedCartItems: Product[] = [];
-
+  
   constructor(private service: DataService) { }
-
+  
   ngOnInit() {
-    this.collectedCartItems = this.service.getCartItems();
+    this.collectedProducts = this.service.getProductsFromStorage();
+    this.collectedCartItems = this.service.getCartItemsFromStorage();
   }
   
-  cartItemsCounter() {
-    let counter = 0;
-    counter ++;
-    console.log(counter);
-    return counter;
+  collectedCartItems: CartItem[] = [];
+  collectedProducts: Product[] = [];
+
+
+  onRemoveItem(item) {
+    this.collectedProducts.splice(this.collectedProducts.indexOf(item), 1);
+    this.service.addProductsToStorage(this.collectedProducts);
   }
-
-
-  //create a counter here that counts how many products
-  //create a detele button that conects to deletefunction
-  
-
-
 
 }
