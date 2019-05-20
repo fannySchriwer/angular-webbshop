@@ -36,6 +36,7 @@ export class MockDataService{
 
     sendOrder(order: IOrder) {
       this.mockOrder.push(order);
+      return this.mockOrder;
     }
 
     addToCart(mockProducts: IProduct[]) {
@@ -50,8 +51,8 @@ export class MockDataService{
     item: CartItem = {id: 2, quantity: 1, totalPrice: 200};
 
     /*addItemToCart(item: CartItem) {
-     this.mockItems = this.getCartItems;
-      if(this.mockItems == null) {
+     this.mockItems = this.getCartItems();
+      if(this.mockItems === null) {
         this.mockItems.push(item);      
       } else {
         for(let i = 0; i < this.mockItems.length; i++) {

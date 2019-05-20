@@ -15,7 +15,6 @@ describe('MockDataService', () => {
     expect(service.mockOrder.length).toBe(0);
     service.sendOrder(service.order);
     expect(service.mockOrder.length).toBe(1);
-
   });
 
  /* it('should return a list of type IProduct', () => {

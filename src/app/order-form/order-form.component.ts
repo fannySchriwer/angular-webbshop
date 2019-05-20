@@ -17,6 +17,7 @@ export class OrderFormComponent implements OnInit {
   orders: Order[] = [];
   order = new Order();
   now = moment('L');
+  orderRows: [] = [];
 
   constructor(private service: DataService) { }
   
@@ -25,23 +26,32 @@ export class OrderFormComponent implements OnInit {
     this.collectedCartItems = this.service.getCartItemsFromStorage();
     var sum = this.getTotalAmount();
     console.log(this.now);
+
+    for(let i = 0; i < this.collectedProducts.length; i++) {
+
+    }
+
   }
+
 
   createOrder() {
     this.order.id = null;
     this.order.companyId = 11;
-    this.order.createdBy = "";
+    this.order.createdBy = "Fanny";
     this.order.paymentMethod = "Paypal";
     this.order.status = "Sending order";
     this.order.totalPrice = this.sum;
     this.order.created = this.now;
-    this.order.orderRows = [ {
-      productId: 2,
-      amount: 1,  
+    this.order.orderRows = [
+      {
+        productId: 2,
+        amount: 1, 
       }
     ];
 
   }
+
+  
 
   sum: number;
 

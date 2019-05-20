@@ -15,10 +15,15 @@ export class DataService implements IDataService {
   constructor(private httpClient: HttpClient) { }
 
    URL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
+   orderURL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/orders';
 
   getData(): Observable<IProduct[]> {    
     return this.httpClient.get<IProduct[]>(this.URL);
   }
+
+  /*sendData() {
+    return this.httpClient.post(this.orderURL);
+  }*/
 
   cartCounter = [];
   counter: number;
