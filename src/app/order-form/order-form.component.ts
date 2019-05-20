@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { CartItem } from '../interfaces/CartItem';
 import { Product } from '../interfaces/Product';
 import { Order } from '../interfaces/Order';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-order-form',
@@ -14,6 +15,8 @@ export class OrderFormComponent implements OnInit {
   collectedCartItems: CartItem[] = [];
   collectedProducts: Product[] = [];
   orders: Order[] = [];
+  order = new Order();
+  now = moment('L');
 
   constructor(private service: DataService) { }
   
@@ -21,6 +24,23 @@ export class OrderFormComponent implements OnInit {
     this.collectedProducts = this.service.getProductsFromStorage();
     this.collectedCartItems = this.service.getCartItemsFromStorage();
     var sum = this.getTotalAmount();
+    console.log(this.now);
+  }
+
+  createOrder() {
+    this.order.id = null;
+    this.order.companyId = 11;
+    this.order.createdBy = "";
+    this.order.paymentMethod = "Paypal";
+    this.order.status = "Sending order";
+    this.order.totalPrice = this.sum;
+    this.order.created = this.now;
+    this.order.orderRows = [ {
+      productId: 2,
+      amount: 1,  
+      }
+    ];
+
   }
 
   sum: number;

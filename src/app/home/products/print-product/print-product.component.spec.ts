@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IProduct } from 'src/app/interfaces/IProduct';
 import { MockDataService } from '../../../mock-data.service';
 import { Component } from '@angular/core';
+import { of } from 'rxjs';
 
 describe('PrintProductComponent', () => {
   let component: PrintProductComponent;
@@ -38,11 +39,8 @@ describe('PrintProductComponent', () => {
   });
 
   it('should return one product', () => {
-    
-  });
-
-  it('should return one product', () => {
-    console.log(this.products);
+    this.getProducts();
+    expect(this.products.length).toBe(1);
   });
 
   @Component({
@@ -53,22 +51,14 @@ describe('PrintProductComponent', () => {
 
     products: IProduct[] = [];
 
-    constructor (service : MockDataService ){
+    constructor (private service : MockDataService ) { }
 
-      this.products = service.getData();
-   
-     /* service.getData()
-        .subscribe((data: IProduct[]) => { 
-          for (let i = 0; i < data.length; i++){
-            const product = data[i];
-            const productCategory = product.productCategory;
-              if (productCategory[0].categoryId == this.category.id){
-                this.products.push(product);
-              } 
-            }
-          } 
-        );*/
-    }
+    getProducts() {
+      this.service.getData().subscribe((data) => {      
+        this.products = data;
+        return of(this.products);
+      });
   }
+}
 
 });

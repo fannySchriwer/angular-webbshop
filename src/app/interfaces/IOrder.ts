@@ -5,6 +5,6 @@ export interface IOrder {
     createdBy: string;
     paymentMethod: string;
     totalPrice: number;
-    status: number;
+    status: string;
     orderRows: [{productId: number, amount: number}];
 }
