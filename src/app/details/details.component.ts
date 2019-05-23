@@ -10,6 +10,11 @@ import { ICartItem } from '../interfaces/ICartItem';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
+  
+  productsToShow: IProduct[] = [];
+  itemsToStorage: ICartItem[] = [];
+  alertMsg = "";
+  cartItem: ICartItem;
 
   constructor(private route: ActivatedRoute, private service: DataService) { }
 
@@ -21,13 +26,6 @@ export class DetailsComponent implements OnInit {
     });
     
   }
-
-  productsToShow: IProduct[] = [];
-  //productsToStorage: IProduct[] = [];
-  itemsToStorage: ICartItem[] = [];
-  alertMsg = "";
-  cartItem: ICartItem;
-
 
   addCartItem(quantity: number, product: IProduct) {
     this.cartItem = {
@@ -47,6 +45,7 @@ export class DetailsComponent implements OnInit {
     if(this.itemsToStorage === null) {
       this.itemsToStorage = [];
       this.addCartItem(quantity, product);
+      this.service.updateCartCount();
 
     } else {
       let foundItem: boolean = false;
@@ -64,6 +63,7 @@ export class DetailsComponent implements OnInit {
     }     
       if(foundItem === false) {
         this.addCartItem(quantity, product);
+        this.service.updateCartCount();
       }   
     }
   }

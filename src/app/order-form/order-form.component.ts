@@ -28,6 +28,7 @@ export class OrderFormComponent implements OnInit {
 
   orderGroup = this.fb.group({
     name: ['name', Validators.required],
+    paymentMethod: ['payment', Validators.required]
   });
 
   createOrder() {
