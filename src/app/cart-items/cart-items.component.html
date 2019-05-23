@@ -9,15 +9,12 @@
       <div class="col-10 col-md-8">
         <p>{{item.name}}</p>
         <p>{{item.price}} SEK</p>
-        <!--<input type="number" #quantity id="{{item.id}}" (onclick)="getInputQuantity(quantity.value, item)">-->
+       <!--<input type="number" #quantity (onclick)="getInputQuantity(quantity.value, item)">-->
         <button (click)="onRemoveItem(item)">Delete</button>
       </div>
     </div>
-
-    <a routerLinkActive="active" routerLink="/orderform" routerLinkActive="active">go to checkout</a>
-    <router-outlet></router-outlet>
-
+    
   </div>
+  <a routerLinkActive="active" routerLink="/orderform" routerLinkActive="active">go to checkout</a>
+  <router-outlet></router-outlet>
 </div>
-
-<!--<button (click)="sendOrder()">Make order</button>-->
