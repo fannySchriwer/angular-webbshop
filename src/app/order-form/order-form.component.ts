@@ -21,7 +21,7 @@ export class OrderFormComponent implements OnInit {
   now = moment('YYYY-MM-DDTHH-MM-SS');
   orderRows: [] = [];
 
-  constructor(private service: DataService, private fb: FormBuilder) { }
+  constructor(private service: DataService) { }
   
   ngOnInit() {
     this.collectedProducts = this.service.getProductsFromStorage();
@@ -57,11 +57,8 @@ export class OrderFormComponent implements OnInit {
     this.sum = 0;
     
     for(let i = 0; i < this.collectedCartItems.length; i++) {
-      for(let i = 0; i < this.collectedProducts.length; i++) {
-        let price = this.collectedProducts[i].price;
-        let amount = this.collectedCartItems[i].quantity;
-        let totalPrice = price*amount;
-        this.sum += totalPrice;
+        let amount = this.collectedCartItems[i].totalPrice;
+        this.sum += amount;
       }
 
     }
@@ -71,4 +68,4 @@ export class OrderFormComponent implements OnInit {
   //send the form to db and show order-confirm component
 
 }
-}
+
