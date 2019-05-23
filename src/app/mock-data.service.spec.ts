@@ -15,29 +15,34 @@ describe('MockDataService', () => {
     expect(service.mockOrder.length).toBe(0);
     service.sendOrder(service.order);
     expect(service.mockOrder.length).toBe(1);
-
   });
 
-  it('should return a list of type IProduct', () => {
+ /* it('should return a list of type IProduct', () => {
     const service: MockDataService = TestBed.get(MockDataService);
     let myTestList = service.getData();
     expect(myTestList.length).toBeGreaterThan(0);
-  });
+  });*/
 
   it('should set and return a list to sessionstorage', () => {
     const service: MockDataService = TestBed.get(MockDataService);
     service.addToCart(service.mockProducts);
     let cartItems = service.getCartItems();
     expect(cartItems.length).toBeGreaterThan(0);
-
   });
 
-  it('should add an object to a list', () => {
+  it('add an order of type order to a list', () => {
+    const service: MockDataService = TestBed.get(MockDataService);
+    service.sendOrder(service.order);
+    let orders = service.getOrder();
+    expect(orders.length).toBe(1);
+  });
+
+  /*it('should add an object to a list', () => {
     const service: MockDataService = TestBed.get(MockDataService);
     expect(service.mockItems.length).toBe(0);
     service.addItemToCart(service.item);
-    expect(service.mockItems.length).toBe(1);
+    // expect(service.mockItems.length).toBe(1);
 
-  });
+  });*/
 
 });

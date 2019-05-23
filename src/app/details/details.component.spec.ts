@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsComponent } from './details.component';
-import { ActivatedRoute} from '@angular/router';
 import { DataService } from '../data.service';
 import { MockDataService } from '../mock-data.service';
 import { RouterTestingModule } from '@angular/router/testing';
