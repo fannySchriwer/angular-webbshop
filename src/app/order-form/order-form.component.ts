@@ -26,8 +26,18 @@ export class OrderFormComponent implements OnInit {
   sum: number;
 
   getTotalAmount() {
-    this.sum = this.collectedCartItems.reduce((sum, item) => sum + item.totalPrice, 0);
-    return this.sum;
+    this.sum = 0;
+    
+    for(let i = 0; i < this.collectedCartItems.length; i++) {
+      for(let i = 0; i < this.collectedProducts.length; i++) {
+        let price = this.collectedProducts[i].price;
+        let amount = this.collectedCartItems[i].quantity;
+        let totalPrice = price*amount;
+        this.sum += totalPrice;
+      }
+
+    }
+
   }
 
   //create an order formgroup with all the engeskaper för IOrder

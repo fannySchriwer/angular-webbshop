@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { IProduct } from './interfaces/IProduct';
 import { IOrder } from './interfaces/IOrder';
 import { CartItem } from './interfaces/CartItem';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,12 @@ export class MockDataService{
     return this.mockProducts;
   }
 
+  now = moment();
   mockOrder: IOrder[] = [];
   order: IOrder = 
     {id: null, 
       companyId: 8, 
-      created: "2019-04-08T00:00:00", 
+      created: now, 
       createdBy:"fanny",
       paymentMethod: "bitcoins",
       totalPrice: 100,
