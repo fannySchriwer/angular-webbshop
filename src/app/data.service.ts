@@ -10,6 +10,8 @@ import { ICartItem } from './interfaces/ICartItem';
   providedIn: 'root'
 })
 export class DataService implements IDataService {
+  cartCounter = [];
+  counter: number;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,20 +26,9 @@ export class DataService implements IDataService {
     this.httpClient.post(this.orderURL, order);
   }
 
-  cartCounter = [];
-  counter: number;
-
-  /*getProductsFromStorage() {
-    return JSON.parse(sessionStorage.getItem("products"));
-  }*/
-
   getCartItemsFromStorage() {
     return JSON.parse(sessionStorage.getItem("cartItems"));
   }
-
-  /*addProductsToStorage(addedCartItems: IProduct[]) {
-    sessionStorage.setItem("products", JSON.stringify(addedCartItems));
-  }*/
 
   addCartItemsToStorage(itemsToStorage: ICartItem[]) {
     sessionStorage.setItem("cartItems", JSON.stringify(itemsToStorage));
