@@ -28,7 +28,13 @@ describe('MockDataService', () => {
     service.addToCart(service.mockProducts);
     let cartItems = service.getCartItems();
     expect(cartItems.length).toBeGreaterThan(0);
+  });
 
+  it('add an order of type order to a list', () => {
+    const service: MockDataService = TestBed.get(MockDataService);
+    service.sendOrder(service.order);
+    let orders = service.getOrder();
+    expect(orders.length).toBe(1);
   });
 
   /*it('should add an object to a list', () => {

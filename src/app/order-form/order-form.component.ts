@@ -4,6 +4,8 @@ import { CartItem } from '../interfaces/CartItem';
 import { Product } from '../interfaces/Product';
 import { Order } from '../interfaces/Order';
 import * as moment from 'moment';
+import { IProduct } from '../interfaces/IProduct';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-order-form',
@@ -11,28 +13,26 @@ import * as moment from 'moment';
   styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit {
-  totalAmount: number;
+  sum: number;
   collectedCartItems: CartItem[] = [];
   collectedProducts: Product[] = [];
-  orders: Order[] = [];
+  orderToSend: Order[] = [];
   order = new Order();
-  now = moment('L');
+  now = moment('YYYY-MM-DDTHH-MM-SS');
   orderRows: [] = [];
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService, private fb: FormBuilder) { }
   
   ngOnInit() {
     this.collectedProducts = this.service.getProductsFromStorage();
     this.collectedCartItems = this.service.getCartItemsFromStorage();
     var sum = this.getTotalAmount();
     console.log(this.now);
-
-    for(let i = 0; i < this.collectedProducts.length; i++) {
-
-    }
-
   }
 
+ /* orderForm = this.fb.group({
+    name: ['name', Validators.required]
+  });*/
 
   createOrder() {
     this.order.id = null;
@@ -49,15 +49,20 @@ export class OrderFormComponent implements OnInit {
       }
     ];
 
+    this.orderToSend.push(this.order);
+    console.log(this.orderToSend);
   }
 
-  
-
-  sum: number;
-
   getTotalAmount() {
-    this.sum = this.collectedCartItems.reduce((sum, item) => sum + item.totalPrice, 0);
-    return this.sum;
+    
+    for(let i = 0; i < this.collectedCartItems.length; i++) {
+     this.sum += this.collectedCartItems[i].totalPrice;
+     // let product = products.find(p => p.id === this.collectedCartItems[i].id);
+      console.log(this.collectedCartItems[i].totalPrice);
+     // this.sum += product.price * this.collectedCartItems[i].quantity;
+    }
+    //this.sum = this.collectedCartItems.reduce((sum, item) => sum + item.totalPrice, 0);
+    console.log(this.sum);
   }
 
   //create an order formgroup with all the engeskaper för IOrder

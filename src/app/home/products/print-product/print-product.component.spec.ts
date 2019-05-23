@@ -39,8 +39,9 @@ describe('PrintProductComponent', () => {
   });
 
   it('should return one product', () => {
-    this.getProducts();
-    expect(this.products.length).toBe(1);
+    //this.getProducts();
+    //expect(this.products.length).toBe(1);
+    expect(testHostComponent.product.id).toBe(1);
   });
 
   @Component({
@@ -49,14 +50,16 @@ describe('PrintProductComponent', () => {
 
   class TestHostComponent {
 
-    products: IProduct[] = [];
+    product: IProduct;
 
-    constructor (private service : MockDataService ) { }
+    constructor (private service : MockDataService ) {
+      this.getProducts();
+     }
 
     getProducts() {
       this.service.getData().subscribe((data) => {      
-        this.products = data;
-        return of(this.products);
+        this.product = data[0];
+        //return of(this.product);
       });
   }
 }

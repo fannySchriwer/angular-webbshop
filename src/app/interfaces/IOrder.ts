@@ -1,7 +1,9 @@
+import { Moment } from 'moment';
+
 export interface IOrder {
-    id; 
+    id: number; 
     companyId: number;
-    created: string;
+    created: Moment;
     createdBy: string;
     paymentMethod: string;
     totalPrice: number;

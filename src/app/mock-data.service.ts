@@ -36,6 +36,10 @@ export class MockDataService{
 
     sendOrder(order: IOrder) {
       this.mockOrder.push(order);
+     
+    }
+
+    getOrder() {
       return this.mockOrder;
     }
 

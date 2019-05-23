@@ -13,7 +13,7 @@ describe('OrderFormComponent', () => {
       declarations: [ OrderFormComponent ],
       imports: [ 
         RouterTestingModule.withRoutes([]),
-        HttpClientModule
+        HttpClientModule,
       ]
     })
     .compileComponents();
