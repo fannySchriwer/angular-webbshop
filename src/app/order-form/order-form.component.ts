@@ -18,7 +18,7 @@ export class OrderFormComponent implements OnInit {
   collectedProducts: Product[] = [];
   orderToSend: Order[] = [];
   order = new Order();
-  now = moment('YYYY-MM-DDTHH-MM-SS');
+  now = moment().format('LLLL');
   orderRows: [] = [];
 
   constructor(private service: DataService) { }
@@ -27,7 +27,6 @@ export class OrderFormComponent implements OnInit {
     this.collectedProducts = this.service.getProductsFromStorage();
     this.collectedCartItems = this.service.getCartItemsFromStorage();
     var sum = this.getTotalAmount();
-    console.log(this.now);
   }
 
  /* orderForm = this.fb.group({
@@ -44,8 +43,8 @@ export class OrderFormComponent implements OnInit {
     this.order.created = this.now;
     this.order.orderRows = [
       {
-        productId: 2,
         amount: 1, 
+        productId: 2
       }
     ];
 
@@ -55,13 +54,13 @@ export class OrderFormComponent implements OnInit {
 
   getTotalAmount() {
     this.sum = 0;
-    
-    for(let i = 0; i < this.collectedCartItems.length; i++) {
-        let amount = this.collectedCartItems[i].totalPrice;
-        this.sum += amount;
-      }
-
+    if(this.collectedCartItems !== null) {
+      for(let i = 0; i < this.collectedCartItems.length; i++) {
+          let amount = this.collectedCartItems[i].totalPrice;
+          this.sum += amount;
+        }
     }
+  }
 
 
   //create an order formgroup with all the engeskaper för IOrder

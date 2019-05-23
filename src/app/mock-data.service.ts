@@ -11,7 +11,7 @@ import * as moment from 'moment';
 })
 export class MockDataService{
 
-  now = moment();
+  now = moment().format('LLLL');
 
   mockProducts: IProduct[] = [
     {id: 1, name: "pulp fiction", description: "this is awesome", price: 35, imageUrl: "this url", year: 2001, added: "sometime this year", productCategory: []},
@@ -36,7 +36,6 @@ export class MockDataService{
 
     sendOrder(order: IOrder) {
       this.mockOrder.push(order);
-     
     }
 
     getOrder() {
@@ -53,20 +52,6 @@ export class MockDataService{
 
     mockItems: CartItem[] = [];
     item: CartItem = {id: 2, quantity: 1, totalPrice: 200};
-
-    /*addItemToCart(item: CartItem) {
-     this.mockItems = this.getCartItems();
-      if(this.mockItems === null) {
-        this.mockItems.push(item);      
-      } else {
-        for(let i = 0; i < this.mockItems.length; i++) {
-          if(this.mockItems[i].id === item.id) {
-            this.mockItems[i].quantity = item.quantity;
-            return this.mockItems;
-          }
-        }
-      }
-    }*/
 
 
   constructor() { }
