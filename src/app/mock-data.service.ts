@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import { IProduct } from './interfaces/IProduct';
 import { IOrder } from './interfaces/IOrder';
-import { CartItem } from './interfaces/CartItem';
+import { ICartItem } from './interfaces/ICartItem';
 import * as moment from 'moment';
 
 @Injectable({
@@ -13,8 +13,9 @@ export class MockDataService{
 
   now = moment().format('LLLL');
   mockOrder: IOrder[] = [];
-  mockItems: CartItem[] = [];
-  item: CartItem = {id: 2, quantity: 1, totalPrice: 200};
+  mockItems: ICartItem[] = [];
+  product: IProduct;
+  item: ICartItem = {product: this.product , quantity: 1, totalPrice: 200};
 
   mockProducts: IProduct[] = [
     {id: 1, name: "pulp fiction", description: "this is awesome", price: 35, imageUrl: "this url", year: 2001, added: "sometime this year", productCategory: []},

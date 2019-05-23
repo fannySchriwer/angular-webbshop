@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { Product } from '../interfaces/Product';
-import { CartItem } from '../interfaces/CartItem';
-import { Order } from '../interfaces/Order';
+import { IProduct } from '../interfaces/IProduct';
+import { ICartItem } from '../interfaces/ICartItem';
+import { IOrder } from '../interfaces/IOrder';
 
 @Component({
   selector: 'app-cart-items',
@@ -10,22 +10,16 @@ import { Order } from '../interfaces/Order';
   styleUrls: ['./cart-items.component.css']
 })
 export class CartItemsComponent implements OnInit {
-
+  collectedCartItems: ICartItem[] = [];
   
   constructor(private service: DataService) { }
   
   ngOnInit() {
-    this.collectedProducts = this.service.getProductsFromStorage();
     this.collectedCartItems = this.service.getCartItemsFromStorage();
   }
   
-  collectedCartItems: CartItem[] = [];
-  collectedProducts: Product[] = [];
-
-
   onRemoveItem(item) {
-    this.collectedProducts.splice(this.collectedProducts.indexOf(item), 1);
-    this.service.addProductsToStorage(this.collectedProducts);
+    this.collectedCartItems.splice(this.collectedCartItems.indexOf(item), 1);
+    this.service.addCartItemsToStorage(this.collectedCartItems);
   }
-
 }

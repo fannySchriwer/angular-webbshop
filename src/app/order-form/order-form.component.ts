@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { CartItem } from '../interfaces/CartItem';
-import { Product } from '../interfaces/Product';
-import { Order } from '../interfaces/Order';
-import * as moment from 'moment';
+import { ICartItem } from '../interfaces/ICartItem';
 import { IProduct } from '../interfaces/IProduct';
+import { IOrder } from '../interfaces/IOrder';
+import * as moment from 'moment';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -14,24 +13,22 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class OrderFormComponent implements OnInit {
   sum: number;
-  collectedCartItems: CartItem[] = [];
-  collectedProducts: Product[] = [];
-  orderToSend: Order[] = [];
-  order = new Order();
+  collectedCartItems: ICartItem[] = [];
+  orderToSend: IOrder[] = [];
+  order: IOrder;
   now = moment().format('LLLL');
   orderRows: [] = [];
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService, private fb: FormBuilder) { }
   
   ngOnInit() {
-    this.collectedProducts = this.service.getProductsFromStorage();
     this.collectedCartItems = this.service.getCartItemsFromStorage();
     var sum = this.getTotalAmount();
   }
 
- /* orderForm = this.fb.group({
-    name: ['name', Validators.required]
-  });*/
+  orderGroup = this.fb.group({
+    name: ['name', Validators.required],
+  });
 
   createOrder() {
     this.order.id = null;
@@ -47,7 +44,6 @@ export class OrderFormComponent implements OnInit {
         productId: 2
       }
     ];
-
     this.orderToSend.push(this.order);
     console.log(this.orderToSend);
   }
@@ -61,10 +57,5 @@ export class OrderFormComponent implements OnInit {
         }
     }
   }
-
-
-  //create an order formgroup with all the engeskaper för IOrder
-  //send the form to db and show order-confirm component
-
 }
 

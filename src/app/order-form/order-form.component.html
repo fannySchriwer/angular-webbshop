@@ -11,11 +11,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of collectedProducts; let i = index">
-          <th scope="row">{{product.name}}</th>
-          <td>{{product.price}}</td>
-          <td>{{collectedCartItems[i].quantity}}</td>
-          <td>{{collectedCartItems[i].totalPrice}}</td>
+        <tr *ngFor="let product of collectedCartItems">
+          <th scope="row">{{product.product.name}}</th>
+          <td>{{product.product.price}}</td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.totalPrice}}</td>
         </tr>
         <tr>
           <th>Total Price</th>
@@ -25,14 +25,28 @@
         </tr>
       </tbody>
    </table>
-   <button (click)="createOrder()">Send order</button>
   </div>
 
+  
+  
+	
 
-  <!--<div class="order-form col-12 col-md-6">
-    <form [FormGroup]="orderForm" #orderForm = "ngForm" (ngSubmit)="onCreateOrder()">
-      <input type="text" formControlName="name">        
-      <button type="submit" [disabled]="!group.valid">Save</button>     
-    </form>
-  </div>-->
-</div>
+<form [formGroup]="orderGroup" (ngSubmit)="createOrder()">
+<input type="text" formControlName="name">
+<br />
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Payment method</label>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01">
+      <option [ngValue]="null" disabled selected>Choose method</option>
+      <option value="Paypal">Paypal</option>
+      <option value="Bitcoin">Bitcoin</option>
+      <option value="Gold">Gold</option>
+    </select>
+    <br />
+    
+    <button type="submit" [disabled]="!group.valid">Save</button>
+  </div>
+</form>

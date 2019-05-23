@@ -3,9 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IProduct } from './interfaces/IProduct';
 import { IDataService } from './interfaces/IDataService';
-import { Product } from './interfaces/Product';
-import { Order } from './interfaces/Order';
-import { CartItem } from './interfaces/CartItem';
+import { IOrder } from './interfaces/IOrder';
+import { ICartItem } from './interfaces/ICartItem';
 
 @Injectable({
   providedIn: 'root'
@@ -21,38 +20,34 @@ export class DataService implements IDataService {
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
-  /*sendData() {
-    return this.httpClient.post(this.orderURL);
-  }*/
+  sendData(order: IOrder) {
+    this.httpClient.post(this.orderURL, order);
+  }
 
   cartCounter = [];
   counter: number;
 
-  getProductsFromStorage() {
+  /*getProductsFromStorage() {
     return JSON.parse(sessionStorage.getItem("products"));
-  }
+  }*/
 
   getCartItemsFromStorage() {
     return JSON.parse(sessionStorage.getItem("cartItems"));
   }
 
-  addProductsToStorage(addedCartItems: Product[]) {
+  /*addProductsToStorage(addedCartItems: IProduct[]) {
     sessionStorage.setItem("products", JSON.stringify(addedCartItems));
-  }
+  }*/
 
-  addCartItemsToStorage(itemsToStorage: CartItem[]) {
+  addCartItemsToStorage(itemsToStorage: ICartItem[]) {
     sessionStorage.setItem("cartItems", JSON.stringify(itemsToStorage));
   }
 
   updateCartCount() {
-    this.cartCounter = this.getProductsFromStorage();
+    this.cartCounter = this.getCartItemsFromStorage();
     this.counter = this.cartCounter.length;
     return this.counter;
   }
 
-  private orders: Order[] = [];
-  createOrder() {
-    
-  }
 
 }
