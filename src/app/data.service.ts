@@ -22,7 +22,7 @@ export class DataService implements IDataService {
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
-  sendData(order: IOrder) {
+  sendData(order: IOrder[]) {
     this.httpClient.post(this.orderURL, order);
   }
 
