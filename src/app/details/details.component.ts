@@ -27,7 +27,7 @@ export class DetailsComponent implements OnInit {
     
   }
 
-  addCartItem(quantity: number, product: IProduct) {
+  addToCart(quantity: number, product: IProduct) {
     this.cartItem = {
       product: product,
       quantity: +quantity,
@@ -44,8 +44,7 @@ export class DetailsComponent implements OnInit {
 
     if(this.itemsToStorage === null) {
       this.itemsToStorage = [];
-      this.addCartItem(quantity, product);
-      this.service.updateCartCount();
+      this.addToCart(quantity, product);
 
     } else {
       let foundItem: boolean = false;
@@ -62,8 +61,7 @@ export class DetailsComponent implements OnInit {
       this.service.addCartItemsToStorage(this.itemsToStorage);
     }     
       if(foundItem === false) {
-        this.addCartItem(quantity, product);
-        this.service.updateCartCount();
+        this.addToCart(quantity, product);
       }   
     }
   }

@@ -28,9 +28,9 @@ describe('MockDataService', () => {
 
   it('should set and return a list to sessionstorage', () => {
     const service: MockDataService = TestBed.get(MockDataService);
-    service.addToCart(service.mockProducts);
+    service.pushCartItem(1, service.product);
     let cartItems = service.getCartItems();
-    expect(cartItems.length).toBeGreaterThan(0);
+    expect(cartItems.quantity).toBe(1);
   });
 
 });

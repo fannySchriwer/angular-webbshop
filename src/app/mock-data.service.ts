@@ -19,18 +19,12 @@ export class MockDataService{
 
   mockProducts: IProduct[] = [
     {id: 1, name: "pulp fiction", description: "this is awesome", price: 35, imageUrl: "this url", year: 2001, added: "sometime this year", productCategory: []},
-    {id: 1, name: "pulp fiction", description: "this is awesome", price: 35, imageUrl: "this url", year: 2001, added: "sometime this year", productCategory: []},
+    {id: 2, name: "pulp fiction", description: "this is awesome", price: 35, imageUrl: "this url", year: 2001, added: "sometime this year", productCategory: []},
   ]; 
   
   order: IOrder = 
-  { 
-    companyId: 8, 
-    created: this.now, 
-    createdBy:"fanny",
-    paymentMethod: "bitcoins",
-    totalPrice: 100,
-    status: "sent",
-    orderRows:[{productId: 1, amount: 3}]
+  { companyId: 8, created: this.now, createdBy:"fanny", paymentMethod: "bitcoins", totalPrice: 100, status: "sent",
+    orderRows:[{productId: 1, amount: 3}, {productId: 1, amount: 3}]
   };
 
   getData(): Observable<IProduct[]>{
@@ -45,8 +39,19 @@ export class MockDataService{
     return this.mockOrder;
   }
 
-  addToCart(mockProducts: IProduct[]) {
-    sessionStorage.setItem("products", JSON.stringify(mockProducts));
+  addToCart(mockItems: ICartItem[]) {
+    sessionStorage.setItem("products", JSON.stringify(mockItems));
+  }
+
+  pushCartItem(quantity: number, product: IProduct) {
+    this.item = {
+      product: product,
+      quantity: +quantity,
+      totalPrice: +quantity*product.price
+    };
+
+    this.mockItems.push(this.item);
+    this.addToCart(this.mockItems);
   }
 
   getCartItems() {
