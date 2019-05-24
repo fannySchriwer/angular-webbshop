@@ -39,23 +39,40 @@ export class MockDataService{
     return this.mockOrder;
   }
 
-  addToCart(mockItems: ICartItem[]) {
-    sessionStorage.setItem("products", JSON.stringify(mockItems));
-  }
-
-  pushCartItem(quantity: number, product: IProduct) {
+  addToCart(quantity: number, product: IProduct) {
     this.item = {
       product: product,
       quantity: +quantity,
       totalPrice: +quantity*product.price
     };
-
     this.mockItems.push(this.item);
-    this.addToCart(this.mockItems);
+  }
+
+  pushCartItem(quantity: number, product: IProduct) {
+
+    if(this.mockItems === null) {
+      this.addToCart(quantity, product);
+    } else {
+      let foundItem: boolean = false;
+
+      if(this.mockItems !== null) {
+        for(let i = 0; i < this.mockItems.length; i++) {
+          if(this.mockItems[i].product.id === product.id) {
+            this.mockItems[i].quantity = +quantity;
+            this.mockItems[i].totalPrice = +quantity*product.price;
+            foundItem = true;
+          }
+        }
+        this.mockItems.push(this.item);
+      }
+      if(foundItem === false) {
+        this.addToCart(quantity, product);
+      } 
+    }
   }
 
   getCartItems() {
-    return JSON.parse(sessionStorage.getItem("products"));
+    return this.mockItems;
   }
 
   constructor() { }
