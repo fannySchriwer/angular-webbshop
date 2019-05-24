@@ -4,3 +4,5 @@
 [0523/151918.216:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
 [0524/094926.740:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
 [0524/133239.855:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0524/155953.789:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: Åtgärden har slutförts. (0x0)
+[0524/172103.822:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports

@@ -13,13 +13,12 @@ import { IOrderRow } from '../interfaces/IOrderRow';
   styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit {
-  sum: number;
   collectedCartItems: ICartItem[] = [];
   orderToSend: IOrder[] = [];
-  order: IOrder;
-  now = moment().format('LLLL');
   orderRows: IOrderRow[] = [];
+  order: IOrder;
   orders: IOrderRow;
+  sum: number;
 
   constructor(private service: DataService, private fb: FormBuilder) { }
   
@@ -32,36 +31,39 @@ export class OrderFormComponent implements OnInit {
 
   orderGroup = this.fb.group({
     name: ['', Validators.required],
-    paymentMethods: ['Paypal', Validators.required],
-    orderRows: this.fb.array([this.fb.control('')])
+    paymentMethods: ['Paypal', Validators.required]
   });
 
-  createOrder() {
-    this.order.companyId = 8;
-    this.order.createdBy = "Fanny";
-    this.order.paymentMethod = "Paypal";
-    this.order.status = "Sending order";
-    this.order.totalPrice = this.sum;
-    this.order.created = this.now;
-
+  createOrderRow() {
     for(let i = 0; i < this.collectedCartItems.length; i++) {
-      this.orders.amount = this.collectedCartItems[i].quantity;
-      this.orders.productId = this.collectedCartItems[i].product.id;
-
-      this.order.orderRows.push(this.orders);
+      this.orderRows.push(
+        {productId: this.collectedCartItems[i].product.id, 
+        amount: this.collectedCartItems[i].quantity})
     }
-    this.orderToSend.push(this.order);
-    console.log(this.orderToSend);
+  };
 
+  createOrder() {
+   let now = moment().format('LLLL');
+
+    this.order = {
+      companyId: 8,
+      createdBy: this.orderGroup.value.name,
+      paymentMethod: this.orderGroup.value.paymentMethods,
+      status: null,
+      totalPrice: this.sum,
+      created: now,
+      orderRows: this.orderRows
+    };
+console.log(this.order);
   }
 
   getTotalAmount() {
     this.sum = 0;
     if(this.collectedCartItems !== null) {
       for(let i = 0; i < this.collectedCartItems.length; i++) {
-          let amount = this.collectedCartItems[i].totalPrice;
-          this.sum += amount;
-        }
+        let amount = this.collectedCartItems[i].totalPrice;
+        this.sum += amount;
+      }
     }
   }
 }

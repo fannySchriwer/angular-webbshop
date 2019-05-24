@@ -22,15 +22,23 @@ describe('MockDataService', () => {
     service.getData().subscribe((data) => {      
       service.mockProducts = data;
     });
-
     expect(service.mockProducts.length).toBe(2);
+
   });
 
-  it('should set and return a list to sessionstorage', () => {
+  it('should send product to a list and return the list', () => {
     const service: MockDataService = TestBed.get(MockDataService);
     service.pushCartItem(1, service.product);
     let cartItems = service.getCartItems();
     expect(cartItems.length).toBeGreaterThan(0);
   });
+
+  it('should return a product with matching id to parameter', () => {
+    const service: MockDataService = TestBed.get(MockDataService);
+    service.getProduct(1);
+    expect(service.productToMatch.length).toBe(1);
+  });
+
+
 
 });
