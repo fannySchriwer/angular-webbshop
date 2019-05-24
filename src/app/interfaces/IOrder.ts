@@ -1,7 +1,6 @@
 import { IOrderRow } from './IOrderRow';
 
-export interface IOrder {
-    id: number; 
+export interface IOrder { 
     companyId: number;
     created: string;
     createdBy: string;

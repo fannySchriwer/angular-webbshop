@@ -23,7 +23,7 @@ export class MockDataService{
   ]; 
   
   order: IOrder = 
-  {id: null, 
+  { 
     companyId: 8, 
     created: this.now, 
     createdBy:"fanny",

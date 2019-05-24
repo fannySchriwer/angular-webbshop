@@ -27,26 +27,21 @@
    </table>
   </div>
 
-  
-  
-	
-
 <form [formGroup]="orderGroup" (ngSubmit)="createOrder()">
-<input type="text" formControlName="name">
+<input class="form-control" placeholder="Name" type="text" formControlName="name" pattern="[A-Za-z]" minlength="2" maxlength="15">
 <br />
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01">Payment method</label>
     </div>
-    <select class="custom-select" id="inputGroupSelect01">
-      <option [ngValue]="null" disabled selected>Choose method</option>
-      <option value="Paypal">Paypal</option>
-      <option value="Bitcoin">Bitcoin</option>
-      <option value="Gold">Gold</option>
+    <select class="custom-select" formControlName="paymentMethods" id="inputGroupSelect01">
+      <option *ngFor="let method of paymentMethods" [value]="method">
+        {{ method }}
+       </option>
     </select>
     <br />
     
-    <button type="submit" [disabled]="!group.valid">Save</button>
+    <button type="submit" [disabled]="orderGroup.invalid">Save</button>
   </div>
 </form>

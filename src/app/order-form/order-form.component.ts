@@ -5,6 +5,7 @@ import { IProduct } from '../interfaces/IProduct';
 import { IOrder } from '../interfaces/IOrder';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { IOrderRow } from '../interfaces/IOrderRow';
 
 @Component({
   selector: 'app-order-form',
@@ -17,7 +18,8 @@ export class OrderFormComponent implements OnInit {
   orderToSend: IOrder[] = [];
   order: IOrder;
   now = moment().format('LLLL');
-  orderRows: [] = [];
+  orderRows: IOrderRow[] = [];
+  orders: IOrderRow;
 
   constructor(private service: DataService, private fb: FormBuilder) { }
   
@@ -26,27 +28,31 @@ export class OrderFormComponent implements OnInit {
     var sum = this.getTotalAmount();
   }
 
+  paymentMethods = ["Paypal", "Bitcoin", "Guld"];
+
   orderGroup = this.fb.group({
-    name: ['name', Validators.required],
-    paymentMethod: ['payment', Validators.required]
+    name: ['', Validators.required],
+    paymentMethods: ['Paypal', Validators.required],
+    orderRows: this.fb.array([this.fb.control('')])
   });
 
   createOrder() {
-    this.order.id = null;
-    this.order.companyId = 11;
+    this.order.companyId = 8;
     this.order.createdBy = "Fanny";
     this.order.paymentMethod = "Paypal";
     this.order.status = "Sending order";
     this.order.totalPrice = this.sum;
     this.order.created = this.now;
-    this.order.orderRows = [
-      {
-        amount: 1, 
-        productId: 2
-      }
-    ];
+
+    for(let i = 0; i < this.collectedCartItems.length; i++) {
+      this.orders.amount = this.collectedCartItems[i].quantity;
+      this.orders.productId = this.collectedCartItems[i].product.id;
+
+      this.order.orderRows.push(this.orders);
+    }
     this.orderToSend.push(this.order);
     console.log(this.orderToSend);
+
   }
 
   getTotalAmount() {
