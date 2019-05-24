@@ -30,7 +30,7 @@ describe('MockDataService', () => {
     const service: MockDataService = TestBed.get(MockDataService);
     service.pushCartItem(1, service.product);
     let cartItems = service.getCartItems();
-    expect(cartItems.quantity).toBe(1);
+    expect(cartItems.length).toBeGreaterThan(0);
   });
 
 });

@@ -14,7 +14,7 @@ export class MockDataService{
   now = moment().format('LLLL');
   mockOrder: IOrder[] = [];
   mockItems: ICartItem[] = [];
-  product: IProduct;
+  product: IProduct = {id: 3, name: "pulp fiction", description: "this is awesome", price: 35, imageUrl: "this url", year: 2001, added: "sometime this year", productCategory: []};
   item: ICartItem = {product: this.product , quantity: 1, totalPrice: 200};
 
   mockProducts: IProduct[] = [
