@@ -18,8 +18,13 @@ export class CartItemsComponent implements OnInit {
     this.collectedCartItems = this.service.getCartItemsFromStorage();
   }
   
-  onRemoveItem(item) {
-    this.collectedCartItems.splice(this.collectedCartItems.indexOf(item), 1);
+  onRemoveItem(product: ICartItem) {
+    console.log(product);
+    for(let i = 0; i < this.collectedCartItems.length; i++) {
+      if(this.collectedCartItems[i].product.id === product.product.id) {
+        this.collectedCartItems.splice(this.collectedCartItems.indexOf(product), 1);
+      }
+    }
     this.service.addCartItemsToStorage(this.collectedCartItems);
   }
 }
