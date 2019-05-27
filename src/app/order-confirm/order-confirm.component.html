@@ -1,3 +1,2 @@
-<p>
-  order-confirm works!
-</p>
+<h2>Thank you for your order!</h2>
+<p *ngFor="let cartItem of collectedCartItems">Ordered by: {{cartItem.orderedBy}} {{cartItem.totalPrice}}</p>

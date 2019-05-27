@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderConfirmComponent } from './order-confirm.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('OrderConfirmComponent', () => {
   let component: OrderConfirmComponent;
@@ -8,7 +9,8 @@ describe('OrderConfirmComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderConfirmComponent ]
+      declarations: [ OrderConfirmComponent ],
+      imports: [ HttpClientModule ]
     })
     .compileComponents();
   }));
