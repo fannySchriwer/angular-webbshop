@@ -24,7 +24,7 @@ export class MockDataService{
   ]; 
   
   order: IOrder = 
-    {companyId: 8, created: this.now, createdBy:"fanny", paymentMethod: "bitcoins", totalPrice: 100, status: "sent",
+    {companyId: 8, created: this.now, createdBy:"fanny", paymentMethod: "bitcoins", totalPrice: 100, status: 0,
     orderRows:[{productId: 1, amount: 3}, {productId: 1, amount: 3}]
   };
 

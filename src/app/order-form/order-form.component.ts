@@ -36,28 +36,28 @@ export class OrderFormComponent implements OnInit {
 
   createOrderRow() {
     for(let i = 0; i < this.collectedCartItems.length; i++) {
-      this.orderRow =
-        {productId: this.collectedCartItems[i].product.id, 
+      this.orderRow = {
+        productId: this.collectedCartItems[i].product.id, 
         amount: this.collectedCartItems[i].quantity};
         this.orderRows.push(this.orderRow);
     }
   };
 
   createOrder() {
-   let now = moment().format('LLLL');
+   let now = moment().format();
    this.createOrderRow();
 
     this.order = {
       companyId: 11,
       createdBy: this.orderGroup.value.name,
       paymentMethod: this.orderGroup.value.paymentMethods,
-      status: null,
+      status: 0,
       totalPrice: this.sum,
       created: now,
       orderRows: this.orderRows
     };
-console.log(this.order);
-this.service.sendData(this.order);
+    console.log(this.order);
+    this.service.sendData(this.order).subscribe();
   }
 
   getTotalAmount() {

@@ -16,14 +16,14 @@ export class DataService implements IDataService {
   constructor(private httpClient: HttpClient) { }
 
    URL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
-   orderURL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/orders';
+   orderURL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/orders/';
 
   getData(): Observable<IProduct[]> {    
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
   sendData(order: IOrder) {
-    this.httpClient.post(this.orderURL, order);
+    return this.httpClient.post(this.orderURL, order);
   }
 
   getOrders(): Observable<IOrder[]> {
