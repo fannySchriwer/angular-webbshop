@@ -22,8 +22,12 @@ export class DataService implements IDataService {
     return this.httpClient.get<IProduct[]>(this.URL);
   }
 
-  sendData(order: IOrder[]) {
+  sendData(order: IOrder) {
     this.httpClient.post(this.orderURL, order);
+  }
+
+  getOrders(): Observable<IOrder[]> {
+    return this.httpClient.get<IOrder[]>(this.orderURL);
   }
 
   getCartItemsFromStorage() {

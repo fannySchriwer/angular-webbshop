@@ -17,7 +17,7 @@ export class OrderFormComponent implements OnInit {
   orderToSend: IOrder[] = [];
   orderRows: IOrderRow[] = [];
   order: IOrder;
-  orders: IOrderRow;
+  orderRow: IOrderRow;
   sum: number;
 
   constructor(private service: DataService, private fb: FormBuilder) { }
@@ -36,14 +36,16 @@ export class OrderFormComponent implements OnInit {
 
   createOrderRow() {
     for(let i = 0; i < this.collectedCartItems.length; i++) {
-      this.orderRows.push(
+      this.orderRow =
         {productId: this.collectedCartItems[i].product.id, 
-        amount: this.collectedCartItems[i].quantity})
+        amount: this.collectedCartItems[i].quantity};
+        this.orderRows.push(this.orderRow);
     }
   };
 
   createOrder() {
    let now = moment().format('LLLL');
+   this.createOrderRow();
 
     this.order = {
       companyId: 8,
@@ -55,6 +57,7 @@ export class OrderFormComponent implements OnInit {
       orderRows: this.orderRows
     };
 console.log(this.order);
+this.service.sendData(this.order);
   }
 
   getTotalAmount() {
