@@ -17,6 +17,7 @@ export class DataService implements IDataService {
 
    URL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/products';
    orderURL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/orders/';
+   getOrdersURL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/orders?companyId=11';
 
   getData(): Observable<IProduct[]> {    
     return this.httpClient.get<IProduct[]>(this.URL);
@@ -27,7 +28,7 @@ export class DataService implements IDataService {
   }
 
   getOrders(): Observable<IOrder[]> {
-    return this.httpClient.get<IOrder[]>(this.orderURL);
+    return this.httpClient.get<IOrder[]>(this.getOrdersURL);
     //to see in url api/orders?companyId=11
   }
 

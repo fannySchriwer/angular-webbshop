@@ -15,10 +15,11 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.service.getOrders().subscribe((data) => {      
       this.orders = data;
+
       for(let i = 0; i < this.orders.length; i++) {
-        if(this.orders[i].companyId == 0) {
-          return this.orders;
+        if(this.orders[i].companyId == 11) {
           console.log(this.orders);
+          return this.orders;
         }
       }
 

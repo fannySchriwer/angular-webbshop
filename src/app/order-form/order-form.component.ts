@@ -6,6 +6,7 @@ import { IOrder } from '../interfaces/IOrder';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { IOrderRow } from '../interfaces/IOrderRow';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-form',
@@ -20,7 +21,7 @@ export class OrderFormComponent implements OnInit {
   orderRow: IOrderRow;
   sum: number;
 
-  constructor(private service: DataService, private fb: FormBuilder) { }
+  constructor(private service: DataService, private fb: FormBuilder, private router: Router) { }
   
   ngOnInit() {
     this.collectedCartItems = this.service.getCartItemsFromStorage();
@@ -58,6 +59,7 @@ export class OrderFormComponent implements OnInit {
     };
     console.log(this.order);
     this.service.sendData(this.order).subscribe();
+    this.router.navigate(['orderconfirm']);
   }
 
   getTotalAmount() {
