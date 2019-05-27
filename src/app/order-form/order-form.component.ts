@@ -48,7 +48,7 @@ export class OrderFormComponent implements OnInit {
    this.createOrderRow();
 
     this.order = {
-      companyId: 8,
+      companyId: 11,
       createdBy: this.orderGroup.value.name,
       paymentMethod: this.orderGroup.value.paymentMethods,
       status: null,
