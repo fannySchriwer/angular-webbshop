@@ -1,11 +1,5 @@
-.row {
-  display: flex;
-  flex-direction: column;
-}
-
-.col {
-    width: 90%;
-    padding: 10px;
+.alert-hide {
+    display: none;
 }
 
 img {
