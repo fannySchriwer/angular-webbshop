@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderConfirmComponent } from './order-confirm.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('OrderConfirmComponent', () => {
   let component: OrderConfirmComponent;
@@ -10,7 +11,10 @@ describe('OrderConfirmComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ OrderConfirmComponent ],
-      imports: [ HttpClientModule ]
+      imports: [ 
+        RouterTestingModule.withRoutes([]),
+        HttpClientModule
+       ]
     })
     .compileComponents();
   }));

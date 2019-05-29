@@ -10,21 +10,14 @@ import { DataService } from '../data.service';
 })
 export class OrderConfirmComponent implements OnInit {
 
-  collectedOrders: IOrder[] = [];
-
+ // collectedOrder: IOrder;
+   
   constructor(private service: DataService) { }
 
   ngOnInit() {
-    this.service.getOrders().subscribe((data) => {      
-      this.collectedOrders = data}
-      );
+   // this.collectedOrder = this.service.getOrderFromStorage();
 
-      for(let i = 0; i < this.collectedOrders.length; i++) {
-        if(this.collectedOrders[i].companyId == 11) {
-          //print the latest order made with the same input name (or change to email)
-          //how to get created by to send here?          
-        }
-      }
-      sessionStorage.clear();
-    }
+   // console.log(this.collectedOrder)
+    //sessionStorage.clear();
+  }
 }

@@ -29,8 +29,15 @@ export class DataService implements IDataService {
 
   getOrders(): Observable<IOrder[]> {
     return this.httpClient.get<IOrder[]>(this.getOrdersURL);
-    //to see in url api/orders?companyId=11
   }
+
+  /*sendOrderToStorage(orderToStorage: IOrder) {
+    sessionStorage.setItem("order", JSON.stringify(orderToStorage));
+  }
+
+  getOrderFromStorage() {
+    return JSON.parse(sessionStorage.getItem("order"));
+  }*/
 
   getCartItemsFromStorage() {
     return JSON.parse(sessionStorage.getItem("cartItems"));
