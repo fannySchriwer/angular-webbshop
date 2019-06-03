@@ -2,3 +2,9 @@
 * {
     margin: 0;
 }
+
+:root {
+    --header: #2F2C2C;
+    --yellow: #FFCD3E;
+    --red: #D90000;
+}

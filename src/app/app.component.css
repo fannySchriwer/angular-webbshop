@@ -1,6 +1,22 @@
-header, footer {
-    height: 5em;
-    background-color: grey;
+/*<i class="fas fa-star-half-alt"></i>*/
+/*<i class="fas fa-star"></i>*/
+/*<i class="far fa-star"></i>*/
+
+nav, footer {
+    min-height: 5em;
+    background-color: var(--header);
+}
+
+h1 {
+    font-size: 2em;
+}
+
+i, a, h1 {
+    color: white;
+}
+
+a {
+    text-decoration: none;
 }
 
 nav li {
