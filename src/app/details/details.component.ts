@@ -4,6 +4,8 @@ import { DataService } from '../data.service';
 import { IProduct } from '../interfaces/IProduct';
 import { ICartItem } from '../interfaces/ICartItem';
 
+declare var $: any;
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -23,8 +25,7 @@ export class DetailsComponent implements OnInit {
       myParams['id']; 
       let productId = myParams['id'];
       this.getProduct(productId);
-    });
-    
+    });    
   }
 
   addToCart(quantity: number, product: IProduct) {
@@ -45,6 +46,7 @@ export class DetailsComponent implements OnInit {
     if(this.itemsToStorage === null) {
       this.itemsToStorage = [];
       this.addToCart(quantity, product);
+      $(".alert").removeClass("alert-hide").addClass("alert-success");
 
     } else {
       let foundItem: boolean = false;
@@ -55,6 +57,7 @@ export class DetailsComponent implements OnInit {
             this.itemsToStorage[i].quantity = +quantity;
             this.itemsToStorage[i].totalPrice = +quantity*product.price;
             this.alertMsg = "Item already in cart, updated quantity";
+            $(".alert").removeClass("alert-hide").addClass("alert-danger");
             foundItem = true;
           }
         }
@@ -62,12 +65,9 @@ export class DetailsComponent implements OnInit {
     }     
       if(foundItem === false) {
         this.addToCart(quantity, product);
+        $(".alert").removeClass("alert-hide").addClass("alert-success");
       }   
     }
-  }
-
-  showAlert() {
-    //add code to show correct alert with bootstrap classes and run it in add to cart
   }
 
   getProduct(productId: number) {

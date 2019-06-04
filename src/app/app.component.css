@@ -1,8 +1,33 @@
+/*<i class="fas fa-star-half-alt"></i>*/
+/*<i class="fas fa-star"></i>*/
+/*<i class="far fa-star"></i>*/
+
 header, footer {
-    height: 5em;
-    background-color: grey;
+    min-height: 5em;
+    background-color: var(--header);
+}
+
+h1 {
+    font-size: 2em;
+}
+
+i, a, h1 {
+    color: white;
+}
+
+a {
+    text-decoration: none;
 }
 
 nav li {
     padding: 10px;
+}
+
+nav a:hover {
+    color: var(--yellow);
+}
+
+.red-hr {
+    border-bottom: 2px solid var(--red);
+    width: 70%;
 }

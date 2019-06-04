@@ -1,13 +1,10 @@
-<!--<div class="product-column">
-  <img src="{{product.imageUrl}}" alt="movie poster">
-  <h2>{{product.name}}</h2>
-  <a class="btn" [routerLink]="['/details', product.id]" routerLinkActive="active">Details</a>
-</div>-->
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{product.imageUrl}}" alt="movie poster">
-  <div class="card-body">
-    <h3 class="card-title">{{product.name}}</h3>
-      <a class="btn" [routerLink]="['/details', product.id]" routerLinkActive="active">Details</a>
+<a [routerLink]="['/details', product.id]" routerLinkActive="active">
+  <div class="card">
+    <img class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="movie poster">
+    <div class="card-body">
+      <h3 class="card-title">{{product.name}}</h3>
+    </div>
   </div>
-</div>
+</a>
+

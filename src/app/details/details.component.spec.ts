@@ -31,7 +31,4 @@ describe('DetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  /*it('should add a new product', () => {
-
-  })*/
 });
