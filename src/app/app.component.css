@@ -2,7 +2,7 @@
 /*<i class="fas fa-star"></i>*/
 /*<i class="far fa-star"></i>*/
 
-nav, footer {
+header, footer {
     min-height: 5em;
     background-color: var(--header);
 }
@@ -21,4 +21,13 @@ a {
 
 nav li {
     padding: 10px;
+}
+
+nav a:hover {
+    color: var(--yellow);
+}
+
+.red-hr {
+    border-bottom: 2px solid var(--red);
+    width: 70%;
 }

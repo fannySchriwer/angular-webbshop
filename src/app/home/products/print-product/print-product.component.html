@@ -1,9 +1,10 @@
 
+<a [routerLink]="['/details', product.id]" routerLinkActive="active">
   <div class="card">
     <img class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="movie poster">
     <div class="card-body">
       <h3 class="card-title">{{product.name}}</h3>
-      <a class="btn" [routerLink]="['/details', product.id]" routerLinkActive="active">Details</a>
     </div>
   </div>
+</a>
 
