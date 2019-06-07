@@ -5,3 +5,10 @@
     h2 {
         padding: 10px;
     }
+
+    .card img {
+        width: 100%;
+        overflow: hidden;
+        object-fit: cover;
+        background-position: center;
+    }

@@ -13,6 +13,11 @@ h1 {
     padding: 0 .5em .1em 0;
 }
 
+.cart-icon-link img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
 a, h1 {
     color: white;
 }
