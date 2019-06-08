@@ -6,12 +6,17 @@ import { IDataService } from './interfaces/IDataService';
 import { IOrder } from './interfaces/IOrder';
 import { ICartItem } from './interfaces/ICartItem';
 
+declare var $: any;
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService implements IDataService {
   cartCounter = [];
   counter: number;
+  cartItem: ICartItem;
+  alertMsg = "";
+  itemsToStorage: ICartItem[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -45,6 +50,19 @@ export class DataService implements IDataService {
 
   addCartItemsToStorage(itemsToStorage: ICartItem[]) {
     sessionStorage.setItem("cartItems", JSON.stringify(itemsToStorage));
+  }
+
+  addToCart(quantity: number, product: IProduct) {
+    this.cartItem = {
+      product: product,
+      quantity: +quantity,
+      totalPrice: +quantity*product.price
+    };
+
+    this.alertMsg = "Added to cart";
+    $(".alert").removeClass("alert-hide").addClass("alert-success");
+    this.itemsToStorage.push(this.cartItem);
+    this.addCartItemsToStorage(this.itemsToStorage);
   }
 
   updateCartCount() {

@@ -57,8 +57,8 @@ export class OrderFormComponent implements OnInit {
       created: now,
       orderRows: this.orderRows
     };
-    console.log(this.order);
     this.service.sendData(this.order).subscribe();
+    sessionStorage.clear();
     this.router.navigate(['orderconfirm']);
   }
 

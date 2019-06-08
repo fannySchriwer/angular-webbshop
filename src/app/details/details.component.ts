@@ -14,9 +14,8 @@ declare var $: any;
 export class DetailsComponent implements OnInit {
   
   productsToShow: IProduct[] = [];
-  itemsToStorage: ICartItem[] = [];
-  alertMsg = "";
-  cartItem: ICartItem;
+  
+  
 
   constructor(private route: ActivatedRoute, private service: DataService) { }
 
@@ -28,44 +27,30 @@ export class DetailsComponent implements OnInit {
     });    
   }
 
-  addToCart(quantity: number, product: IProduct) {
-    this.cartItem = {
-      product: product,
-      quantity: +quantity,
-      totalPrice: +quantity*product.price
-    };
-
-    this.alertMsg = "Added to cart";
-    this.itemsToStorage.push(this.cartItem);
-    this.service.addCartItemsToStorage(this.itemsToStorage);
-  }
-
   onAddToCart(quantity: number, product: IProduct) {
-    this.itemsToStorage = this.service.getCartItemsFromStorage();
+    this.service.itemsToStorage = this.service.getCartItemsFromStorage();
 
-    if(this.itemsToStorage === null) {
-      this.itemsToStorage = [];
-      this.addToCart(quantity, product);
-      $(".alert").removeClass("alert-hide").addClass("alert-success");
+    if(this.service.itemsToStorage === null) {
+      this.service.itemsToStorage = [];
+      this.service.addToCart(quantity, product);
 
     } else {
       let foundItem: boolean = false;
 
-      if(this.itemsToStorage !== null) {
-        for(let i = 0; i < this.itemsToStorage.length; i++) {    
-          if(this.itemsToStorage[i].product.id === product.id) {
-            this.itemsToStorage[i].quantity = +quantity;
-            this.itemsToStorage[i].totalPrice = +quantity*product.price;
-            this.alertMsg = "Item already in cart, updated quantity";
+      if(this.service.itemsToStorage !== null) {
+        for(let i = 0; i < this.service.itemsToStorage.length; i++) {    
+          if(this.service.itemsToStorage[i].product.id === product.id) {
+            this.service.itemsToStorage[i].quantity = +quantity;
+            this.service.itemsToStorage[i].totalPrice = +quantity*product.price;
+            this.service.alertMsg = "Item already in cart, updated quantity";
             $(".alert").removeClass("alert-hide").addClass("alert-danger");
             foundItem = true;
           }
         }
-      this.service.addCartItemsToStorage(this.itemsToStorage);
+      this.service.addCartItemsToStorage(this.service.itemsToStorage);
     }     
       if(foundItem === false) {
-        this.addToCart(quantity, product);
-        $(".alert").removeClass("alert-hide").addClass("alert-success");
+        this.service.addToCart(quantity, product);
       }   
     }
   }
