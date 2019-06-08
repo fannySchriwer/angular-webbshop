@@ -8,10 +8,13 @@
 
       <div class="col-10 col-md-8">
         <p>{{product.product.name}}</p>
-        <p>{{product.quantity}}</p>
         <p>{{product.product.price}} SEK</p>
         <p>{{product.totalPrice}}</p>
-       <!--<input type="number" #quantity (onclick)="getInputQuantity(quantity.value, item)">-->
+
+        <button class="btn btn-secondary" type="button">Button</button>
+        <input value="{{product.quantity}}" (onclick)="getInputQuantity(quantity.value, item)">
+        <button class="btn btn-secondary" type="button">Button</button>
+
         <button (click)="onRemoveItem(product)">Delete</button>
       </div>
     </div>
