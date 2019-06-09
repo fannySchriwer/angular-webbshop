@@ -1,14 +1,14 @@
-    img {
-        width: 100%;
+    a {
+        text-decoration: none;
+        color: black;
     }
-
-    h2 {
-        padding: 10px;
+    h4 {
+        font-size: 1em;
     }
-
     .card img {
         width: 100%;
         overflow: hidden;
         object-fit: cover;
         background-position: center;
+        max-height: 350px;
     }
