@@ -2,9 +2,19 @@
 * {
     margin: 0;
 }
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+}
+
+p {
+    font-family: var(--main-font);
+}
 
 :root {
     --header: #2F2C2C;
     --yellow: #FFCD3E;
     --red: #D90000;
+
+    --heading-font: 'Crimson Text', serif;
+    --main-font: 'Open Sans', sans-serif;
 }
