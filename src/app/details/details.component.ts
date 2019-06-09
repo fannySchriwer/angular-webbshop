@@ -12,10 +12,8 @@ declare var $: any;
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  
   productsToShow: IProduct[] = [];
-  
-  
+  alertMsg = "";
 
   constructor(private route: ActivatedRoute, private service: DataService) { }
 
@@ -32,6 +30,7 @@ export class DetailsComponent implements OnInit {
 
     if(this.service.itemsToStorage === null) {
       this.service.itemsToStorage = [];
+      this.alertMsg = "Item added to cart";
       this.service.addToCart(quantity, product);
 
     } else {
@@ -42,14 +41,15 @@ export class DetailsComponent implements OnInit {
           if(this.service.itemsToStorage[i].product.id === product.id) {
             this.service.itemsToStorage[i].quantity = +quantity;
             this.service.itemsToStorage[i].totalPrice = +quantity*product.price;
-            this.service.alertMsg = "Item already in cart, updated quantity";
-            $(".alert").removeClass("alert-hide").addClass("alert-danger");
+            this.alertMsg = "Item already in cart, updated quantity";
+            $(".alert").removeClass("alert-hide").addClass("alert-success");
             foundItem = true;
           }
         }
       this.service.addCartItemsToStorage(this.service.itemsToStorage);
     }     
       if(foundItem === false) {
+        this.alertMsg = "Item added to cart";
         this.service.addToCart(quantity, product);
       }   
     }

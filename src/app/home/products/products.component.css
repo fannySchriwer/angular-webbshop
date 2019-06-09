@@ -7,6 +7,8 @@
     background-image: url('../../../assets/images/red-neon.jpg');
 }
 
-.scroll-bg {
-
+.products-wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    margin: 1em 0;
+    padding: 1em;
 }

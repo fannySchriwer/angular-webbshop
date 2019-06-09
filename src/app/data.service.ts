@@ -1,6 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IProduct } from './interfaces/IProduct';
 import { IDataService } from './interfaces/IDataService';
 import { IOrder } from './interfaces/IOrder';
@@ -15,7 +15,6 @@ export class DataService implements IDataService {
   cartCounter = [];
   counter: number;
   cartItem: ICartItem;
-  alertMsg = "";
   itemsToStorage: ICartItem[] = [];
 
   constructor(private httpClient: HttpClient) { }
@@ -36,14 +35,6 @@ export class DataService implements IDataService {
     return this.httpClient.get<IOrder[]>(this.getOrdersURL);
   }
 
-  /*sendOrderToStorage(orderToStorage: IOrder) {
-    sessionStorage.setItem("order", JSON.stringify(orderToStorage));
-  }
-
-  getOrderFromStorage() {
-    return JSON.parse(sessionStorage.getItem("order"));
-  }*/
-
   getCartItemsFromStorage() {
     return JSON.parse(sessionStorage.getItem("cartItems"));
   }
@@ -58,8 +49,7 @@ export class DataService implements IDataService {
       quantity: +quantity,
       totalPrice: +quantity*product.price
     };
-
-    this.alertMsg = "Added to cart";
+    
     $(".alert").removeClass("alert-hide").addClass("alert-success");
     this.itemsToStorage.push(this.cartItem);
     this.addCartItemsToStorage(this.itemsToStorage);
@@ -70,6 +60,5 @@ export class DataService implements IDataService {
     this.counter = this.cartCounter.length;
     return this.counter;
   }
-
 
 }
