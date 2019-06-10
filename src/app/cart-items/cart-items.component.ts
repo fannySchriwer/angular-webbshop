@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { IProduct } from '../interfaces/IProduct';
 import { ICartItem } from '../interfaces/ICartItem';
-import { IOrder } from '../interfaces/IOrder';
+
+declare var $: any;
 
 @Component({
   selector: 'app-cart-items',
@@ -17,9 +17,49 @@ export class CartItemsComponent implements OnInit {
   ngOnInit() {
     this.collectedCartItems = this.service.getCartItemsFromStorage();
   }
+
+  setAndGetItem() {
+    this.service.addCartItemsToStorage(this.service.itemsToStorage);
+    this.collectedCartItems = this.service.getCartItemsFromStorage();
+  }
+
+  addQuantity(quantity: number, product: ICartItem) {
+    this.service.itemsToStorage = this.service.getCartItemsFromStorage();
+
+    for(let i = 0; i < this.service.itemsToStorage.length; i++) {
+      if(this.service.itemsToStorage[i].product.id === product.product.id) {
+        let newQtn = this.service.itemsToStorage[i].quantity = +quantity +1;
+        this.service.itemsToStorage[i].totalPrice = newQtn*product.product.price;
+      } 
+    }
+    this.setAndGetItem();
+  } 
+
+  updateQuantity(quantity: number, product: ICartItem) {
+    this.service.itemsToStorage = this.service.getCartItemsFromStorage();
+    
+    for(let i = 0; i < this.service.itemsToStorage.length; i++) {
+      if(this.service.itemsToStorage[i].product.id === product.product.id) {
+        let newQtn = this.service.itemsToStorage[i].quantity = +quantity;
+        this.service.itemsToStorage[i].totalPrice = +newQtn*product.product.price;
+      } 
+    }
+    this.setAndGetItem();
+  }
+
+  removeQuantity(quantity: number, product: ICartItem) {
+    this.service.itemsToStorage = this.service.getCartItemsFromStorage();
+    
+    for(let i = 0; i < this.service.itemsToStorage.length; i++) { 
+      if(this.service.itemsToStorage[i].product.id === product.product.id) { 
+        let newQtn = this.service.itemsToStorage[i].quantity = +quantity -1;
+        this.service.itemsToStorage[i].totalPrice = +newQtn*product.product.price;
+      }
+    }
+    this.setAndGetItem();
+  }
   
   onRemoveItem(product: ICartItem) {
-    console.log(product);
     for(let i = 0; i < this.collectedCartItems.length; i++) {
       if(this.collectedCartItems[i].product.id === product.product.id) {
         this.collectedCartItems.splice(this.collectedCartItems.indexOf(product), 1);
