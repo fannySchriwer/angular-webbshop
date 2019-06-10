@@ -9,7 +9,7 @@ header, footer {
 
 h1 {
     font-size: 2.25em;
-    padding: .3em 1em;
+    padding: .3em .5em;
 }
 
 .cart-icon-link img {
@@ -31,7 +31,7 @@ nav {
 }
 
 nav li {
-    padding: 0 2em;
+    padding: 0 1em;
     display:inline-block;
 }
 
@@ -48,6 +48,11 @@ nav a:hover {
     width: 70%;
 }
 
-@media(min-width: 992px) {
-
+@media(min-width: 768px) {
+    h1 {
+        padding: .3em 1em;
+    }
+    nav li {
+        padding: 0 2em;
+    }
 }
