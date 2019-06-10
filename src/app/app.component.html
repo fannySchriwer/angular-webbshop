@@ -1,23 +1,21 @@
 <header class="row">
-  <nav class="col-12 navbar navbar-expand-lg navbar-dark">
+  <a class="cart-icon-link" routerLink="home">
     <h1>MoviePoster</h1>
-
-    <a class="cart-icon-link" routerLink="/shoppingcart" routerLinkActive="active"><img src="../assets/images/shopping-cart.png" alt="cart" /></a>
-    
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarNav">
-      <ul class="nav nav-pill">
+  </a>
+  
+  <a class="cart-icon-link" routerLink="/shoppingcart" routerLinkActive="active">
+    <img src="../assets/images/shopping-cart.png" alt="cart" />
+  </a>
+  
+  <nav class="col-12 navbar navbar-expand-lg navbar-dark">
+      <ul class="nav nav-pill text-center">
         <li routerLinkActive="active"><a routerLink="home" routerLinkActive="active">Posters</a></li>
+        <li><a href="#">My orders</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Q&A</a></li>
-        <li><a href="#">My orders</a></li>
       </ul>
-    </div>
-
   </nav>
+
 </header>
 
 <router-outlet></router-outlet>

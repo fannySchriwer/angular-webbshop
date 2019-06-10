@@ -38,6 +38,9 @@
         color:#fff;
       }
 
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
+        img {
+            height: 350px;
+        }
 
     }

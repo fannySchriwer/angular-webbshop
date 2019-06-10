@@ -7,14 +7,9 @@ header, footer {
     background-color: var(--header);
 }
 
-footer {
-    margin-top: 2em;
-}
-
 h1 {
-    font-size: 2em;
-    border-bottom: 2px solid var(--red);
-    padding: 0 .5em .1em 0;
+    font-size: 2.25em;
+    padding: .3em 1em;
 }
 
 .cart-icon-link img {
@@ -30,8 +25,17 @@ a {
     text-decoration: none;
 }
 
+nav {
+    border-top: 1px solid var(--red);
+}
+
 nav li {
-    padding: 10px;
+    padding: 0 2em;
+    display:inline-block;
+}
+
+ul {
+    margin: 0 auto;
 }
 
 nav a:hover {
