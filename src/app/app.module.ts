@@ -14,7 +14,6 @@ import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { AdminComponent } from './admin/admin.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { CarouselComponent } from './home/products/carousel/carousel.component';
 
 
 @NgModule({
@@ -29,7 +28,6 @@ import { CarouselComponent } from './home/products/carousel/carousel.component';
     AdminComponent,
     CartItemsComponent,
     PagenotfoundComponent,
-    CarouselComponent
   ],
   imports: [
     BrowserModule,
