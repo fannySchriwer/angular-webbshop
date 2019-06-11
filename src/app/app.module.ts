@@ -13,6 +13,7 @@ import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { AdminComponent } from './admin/admin.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CartItemsComponent } from './cart-items/cart-items.component';
     OrderFormComponent,
     OrderConfirmComponent,
     AdminComponent,
-    CartItemsComponent
+    CartItemsComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
