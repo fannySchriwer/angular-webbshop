@@ -2,7 +2,14 @@
 * {
     margin: 0;
 }
-h1, h2, h3, h4, h5, h6 {
+
+body {
+    background-color: var(--header);
+}
+h1 {
+    font-family: 'Cedarville Cursive', cursive;
+}
+h2, h3, h4, h5, h6 {
     font-family: var(--heading-font);
 }
 
@@ -11,10 +18,10 @@ p {
 }
 
 :root {
-    --header: #2F2C2C;
+    --header: black;
     --yellow: #FFCD3E;
     --red: #D90000;
 
-    --heading-font: 'Crimson Text', serif;
+    --heading-font: 'Roboto Mono', monospace;
     --main-font: 'Open Sans', sans-serif;
 }

@@ -5,6 +5,7 @@
         font-size: 1.25em;
     }
     img {
+        border-radius: 2px;
         width: 100%;
         height: 300px;
         overflow: hidden;

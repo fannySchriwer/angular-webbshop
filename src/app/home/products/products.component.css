@@ -1,21 +1,17 @@
-.fixed-bg {
+/*.fixed-bg {
     height: 100%;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     background-image: url('../../../assets/images/red-neon.jpg');
-}
+}*/
 
-.products-wrapper {
-    background: rgba(0, 0, 0, 0.7);
-    margin: 1em 0;
-    padding: 1em;
-}
-
-.carousel, .carousel-inner {
-    height: 50vh;
+.carousel, .carousel-inner, .carousel-item {
+    max-width: 1020px;
+    height: 80vh;
     width: 100%;
+    margin: 0 auto;
 }
 
 .carousel-inner img {
@@ -24,4 +20,41 @@
     overflow: hidden;
     object-fit: cover;
     object-position: center;
+}
+
+.carousel-caption h3 {
+    color: white;
+}
+
+.carousel-caption {
+    background-image: linear-gradient(rgba(0,0,0,0), 20%,  rgb(0, 0, 0, 1));
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 30%;
+}
+
+.hero-text {
+    color: white;
+    padding: .5em;
+}
+
+.hero-text p {
+    font-size: .8em;
+}
+
+@media (min-width: 768px) {
+    .carousel, .carousel-inner, .carousel-item {
+        height: 70vh;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .carousel, .carousel-inner, .carousel-item {
+        height: 80vh;
+    }
+
+
 }
