@@ -30,7 +30,7 @@ export class DetailsComponent implements OnInit {
 
     if(this.service.itemsToStorage === null) {
       this.service.itemsToStorage = [];
-      this.alertMsg = "Item added to cart";
+      this.alertMsg = "This product was added to your cart";
       this.service.addToCart(quantity, product);
 
     } else {
@@ -41,15 +41,14 @@ export class DetailsComponent implements OnInit {
           if(this.service.itemsToStorage[i].product.id === product.id) {
             this.service.itemsToStorage[i].quantity = +quantity;
             this.service.itemsToStorage[i].totalPrice = +quantity*product.price;
-            this.alertMsg = "Item already in cart, updated quantity";
-            $(".alert").removeClass("alert-hide").addClass("alert-success");
+            this.alertMsg = "This products quantity was updated in cart";
             foundItem = true;
           }
         }
       this.service.addCartItemsToStorage(this.service.itemsToStorage);
     }     
       if(foundItem === false) {
-        this.alertMsg = "Item added to cart";
+        this.alertMsg = "This product was added to your cart";
         this.service.addToCart(quantity, product);
       }   
     }

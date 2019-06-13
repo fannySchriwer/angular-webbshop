@@ -50,7 +50,6 @@ export class DataService implements IDataService {
       totalPrice: +quantity*product.price
     };
     
-    $(".alert").removeClass("alert-hide").addClass("alert-success");
     this.itemsToStorage.push(this.cartItem);
     this.addCartItemsToStorage(this.itemsToStorage);
   }
