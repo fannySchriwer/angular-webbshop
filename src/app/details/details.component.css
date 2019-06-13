@@ -6,6 +6,13 @@ img {
   max-width: 100%;
 }
 
+.modal img {
+    height: 200px;
+}
+.modal h5, .modal p {
+    color: black;
+}
+
 h2 {
     text-align: center;
     padding: .5em;
@@ -22,6 +29,6 @@ a {
 }
 
 .wrapper {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
