@@ -49,7 +49,7 @@ export class DataService implements IDataService {
       quantity: +quantity,
       totalPrice: +quantity*product.price
     };
-    
+    $(".alert").removeClass("alert-hide").addClass("alert-secondary");
     this.itemsToStorage.push(this.cartItem);
     this.addCartItemsToStorage(this.itemsToStorage);
   }

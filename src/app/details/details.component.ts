@@ -41,7 +41,8 @@ export class DetailsComponent implements OnInit {
           if(this.service.itemsToStorage[i].product.id === product.id) {
             this.service.itemsToStorage[i].quantity = +quantity;
             this.service.itemsToStorage[i].totalPrice = +quantity*product.price;
-            this.alertMsg = "This products quantity was updated in cart";
+            this.alertMsg = "Product quantity was updated in cart"; 
+            $(".alert").removeClass("alert-hide").addClass("alert-secondary");  
             foundItem = true;
           }
         }
@@ -50,6 +51,7 @@ export class DetailsComponent implements OnInit {
       if(foundItem === false) {
         this.alertMsg = "This product was added to your cart";
         this.service.addToCart(quantity, product);
+        
       }   
     }
   }
