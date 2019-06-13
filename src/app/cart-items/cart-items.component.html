@@ -1,32 +1,38 @@
 <div class="row">
-  <div class="col-12 col-md-6 card" *ngFor="let product of collectedCartItems">
+  <div class="col-12 col-md-6" *ngFor="let product of collectedCartItems">
     
     <div class="row">
-      <div class="col-10 col-md-4">
+      <div class="col-6 p-2">
         <img src="{{product.product.imageUrl}}" alt="movie poster">
       </div>
 
-      <div class="col-10 col-md-8">
+      <div class="col-6 p-2">
         <p>{{product.product.name}}</p>
-        <p>{{product.product.price}} SEK</p>
-        <p>{{product.totalPrice}}</p>
+        <p>{{product.product.price}}sek</p>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <button class="btn btn-secondary" type="button" (click)="addQuantity(quantity.value, product)">+</button>
           </div>
-            <input type="number" min="1" max="100" value="{{product.quantity}}" #quantity (keyup.enter)="updateQuantity(quantity.value, product)">
+          <input type="number" min="1" max="100" value="{{product.quantity}}" #quantity (keyup.enter)="updateQuantity(quantity.value, product)">
           <div class="input-group-append">
             <button class="btn btn-secondary" type="button" (click)="removeQuantity(quantity.value, product)">-</button>
           </div>
         </div>
 
+        <p>Total price: {{product.totalPrice}}sek</p>
+        
         <button class="btn btn-secondary" (click)="onRemoveItem(product)">Delete</button>
 
       </div>
     </div>
     
   </div>
-  <a routerLinkActive="active" routerLink="/orderform" routerLinkActive="active">go to checkout</a>
+</div>
+
+<div class="row">
+  <a class="mt-2" routerLinkActive="active" routerLink="/orderform" routerLinkActive="active">
+    <button type="button" class="btn btn-secondary">Continue to checkout</button>
+  </a>
   <router-outlet></router-outlet>
 </div>
