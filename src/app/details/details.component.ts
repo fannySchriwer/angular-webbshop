@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { IProduct } from '../interfaces/IProduct';
-import { ICartItem } from '../interfaces/ICartItem';
 
 declare var $: any;
 
@@ -12,11 +11,8 @@ declare var $: any;
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  
   productsToShow: IProduct[] = [];
-  itemsToStorage: ICartItem[] = [];
   alertMsg = "";
-  cartItem: ICartItem;
 
   constructor(private route: ActivatedRoute, private service: DataService) { }
 
@@ -28,44 +24,41 @@ export class DetailsComponent implements OnInit {
     });    
   }
 
-  addToCart(quantity: number, product: IProduct) {
-    this.cartItem = {
-      product: product,
-      quantity: +quantity,
-      totalPrice: +quantity*product.price
-    };
-
-    this.alertMsg = "Added to cart";
-    this.itemsToStorage.push(this.cartItem);
-    this.service.addCartItemsToStorage(this.itemsToStorage);
+  validateInputQuantity(quantity: number, product: IProduct) {
+    if(quantity > 0) {
+      this.onAddToCart(quantity, product);
+    } else {
+      alert("You must order at least 1 poster");
+    }
   }
 
   onAddToCart(quantity: number, product: IProduct) {
-    this.itemsToStorage = this.service.getCartItemsFromStorage();
+    this.service.itemsToStorage = this.service.getCartItemsFromStorage();
 
-    if(this.itemsToStorage === null) {
-      this.itemsToStorage = [];
-      this.addToCart(quantity, product);
-      $(".alert").removeClass("alert-hide").addClass("alert-success");
+    if(this.service.itemsToStorage === null) {
+      this.service.itemsToStorage = [];
+      this.alertMsg = "This product was added to your cart";
+      this.service.addToCart(quantity, product);
 
     } else {
       let foundItem: boolean = false;
 
-      if(this.itemsToStorage !== null) {
-        for(let i = 0; i < this.itemsToStorage.length; i++) {    
-          if(this.itemsToStorage[i].product.id === product.id) {
-            this.itemsToStorage[i].quantity = +quantity;
-            this.itemsToStorage[i].totalPrice = +quantity*product.price;
-            this.alertMsg = "Item already in cart, updated quantity";
-            $(".alert").removeClass("alert-hide").addClass("alert-danger");
+      if(this.service.itemsToStorage !== null) {
+        for(let i = 0; i < this.service.itemsToStorage.length; i++) {    
+          if(this.service.itemsToStorage[i].product.id === product.id) {
+            this.service.itemsToStorage[i].quantity = +quantity;
+            this.service.itemsToStorage[i].totalPrice = +quantity*product.price;
+            this.alertMsg = "Product quantity was updated in cart"; 
+            $(".alert").removeClass("alert-hide").addClass("alert-secondary");  
             foundItem = true;
           }
         }
-      this.service.addCartItemsToStorage(this.itemsToStorage);
+      this.service.addCartItemsToStorage(this.service.itemsToStorage);
     }     
       if(foundItem === false) {
-        this.addToCart(quantity, product);
-        $(".alert").removeClass("alert-hide").addClass("alert-success");
+        this.alertMsg = "This product was added to your cart";
+        this.service.addToCart(quantity, product);
+        
       }   
     }
   }

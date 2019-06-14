@@ -1,22 +1,25 @@
 <header class="row">
-  <nav class="col-12 navbar navbar-expand-lg navbar-dark">
-    <h1>MoviePoster</h1>
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
+  <div class="col-8">
+    <a class="cart-icon-link" routerLink="home">
+      <h1>MoviePoster</h1>
+    </a>
+  </div>
 
-    <a routerLink="/shoppingcart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i></a>
-    
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <div class="red-hr"></div>
-      <ul class="nav nav-pill">
-        <li routerLinkActive="active"><a routerLink="home" routerLinkActive="active">Home</a></li>
+  <div class="d-flex justify-content-end col-4">
+    <a class="cart-icon-link align-self-center" routerLink="/shoppingcart" routerLinkActive="active">
+      <img src="../assets/images/shopping-cart.png" alt="cart" />
+    </a>
+  </div>
+  
+  <nav class="col-12 navbar sticky-top navbar-expand-lg navbar-dark">
+      <ul class="nav nav-pill text-center">
+        <li routerLinkActive="active"><a routerLink="home" routerLinkActive="active">Posters</a></li>
+        <li><a href="#">My orders</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Q&A</a></li>
       </ul>
-    </div>
   </nav>
+
 </header>
 
 <router-outlet></router-outlet>

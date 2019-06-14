@@ -1,0 +1,14 @@
+table, form {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+input:invalid {
+    border: 1px solid var(--red);
+}
+span.error {
+    display: none;
+}
+input:invalid ~ span.error {
+    display: inline;
+}

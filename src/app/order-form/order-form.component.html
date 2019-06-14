@@ -1,47 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-12 text-center pt-4" *ngIf="!collectedCartItems || collectedCartItems.length === 0">
+      <p>Your cart is empty!</p>
+    </div>
+
+    <div class="col-12 col-md-8 pt-5">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Movie</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Total price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of collectedCartItems">
+            <th scope="row">{{product.product.name}}</th>
+            <td>{{product.product.price}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.totalPrice}}</td>
+          </tr>
+          <tr>
+            <th>Total Price</th>
+            <td></td>
+            <td></td>
+            <td>{{sum}}</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
 
 <div class="row justify-content-center">
-  <div class="col-12 col-md-6">
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Movie</th>
-          <th scope="col">Price</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Total price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of collectedCartItems">
-          <th scope="row">{{product.product.name}}</th>
-          <td>{{product.product.price}}</td>
-          <td>{{product.quantity}}</td>
-          <td>{{product.totalPrice}}</td>
-        </tr>
-        <tr>
-          <th>Total Price</th>
-          <td></td>
-          <td></td>
-          <td>{{sum}}</td>
-        </tr>
-      </tbody>
-   </table>
-  </div>
+  <div class="col-12 col-md-8 pt-5">
+    <form [formGroup]="orderGroup" (ngSubmit)="createOrder()">
+    <input class="form-control" placeholder="E-mail" type="email" required minlength="10" formControlName="email">
+    <span class="error">Please input a valid e-mail.</span>
 
-<form [formGroup]="orderGroup" (ngSubmit)="createOrder()">
-<input class="form-control" placeholder="Name" type="text" formControlName="name">
-<br />
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Payment method</label>
-    </div>
-    <select class="custom-select" formControlName="paymentMethods" id="inputGroupSelect01">
-      <option *ngFor="let method of paymentMethods" [value]="method">
-        {{ method }}
-       </option>
-    </select>
-    <br />
-    
-    <button type="submit" [disabled]="orderGroup.invalid">Save</button>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Payment method</label>
+        </div>
+        <select class="custom-select" formControlName="paymentMethods" id="inputGroupSelect01">
+          <option *ngFor="let method of paymentMethods" [value]="method">
+            {{ method }}
+            </option>
+        </select>        
+      </div>
+      <button type="submit" class="btn btn-secondary" [disabled]="orderGroup.invalid">Send Order</button>
+    </form>
   </div>
-</form>
+</div>

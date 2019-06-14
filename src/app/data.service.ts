@@ -1,10 +1,12 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IProduct } from './interfaces/IProduct';
 import { IDataService } from './interfaces/IDataService';
 import { IOrder } from './interfaces/IOrder';
 import { ICartItem } from './interfaces/ICartItem';
+
+declare var $: any;
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,8 @@ import { ICartItem } from './interfaces/ICartItem';
 export class DataService implements IDataService {
   cartCounter = [];
   counter: number;
+  cartItem: ICartItem;
+  itemsToStorage: ICartItem[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,14 +35,6 @@ export class DataService implements IDataService {
     return this.httpClient.get<IOrder[]>(this.getOrdersURL);
   }
 
-  /*sendOrderToStorage(orderToStorage: IOrder) {
-    sessionStorage.setItem("order", JSON.stringify(orderToStorage));
-  }
-
-  getOrderFromStorage() {
-    return JSON.parse(sessionStorage.getItem("order"));
-  }*/
-
   getCartItemsFromStorage() {
     return JSON.parse(sessionStorage.getItem("cartItems"));
   }
@@ -47,11 +43,21 @@ export class DataService implements IDataService {
     sessionStorage.setItem("cartItems", JSON.stringify(itemsToStorage));
   }
 
+  addToCart(quantity: number, product: IProduct) {
+    this.cartItem = {
+      product: product,
+      quantity: +quantity,
+      totalPrice: +quantity*product.price
+    };
+    $(".alert").removeClass("alert-hide").addClass("alert-secondary");
+    this.itemsToStorage.push(this.cartItem);
+    this.addCartItemsToStorage(this.itemsToStorage);
+  }
+
   updateCartCount() {
     this.cartCounter = this.getCartItemsFromStorage();
     this.counter = this.cartCounter.length;
     return this.counter;
   }
-
 
 }

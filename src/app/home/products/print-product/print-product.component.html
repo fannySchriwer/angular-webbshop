@@ -1,9 +1,12 @@
 
 <a [routerLink]="['/details', product.id]" routerLinkActive="active">
-  <div class="card">
-    <img class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="movie poster">
-    <div class="card-body">
-      <h3 class="card-title">{{product.name}}</h3>
+  <div class="img-container">
+    <img src="{{product.imageUrl}}" alt="movie poster">
+    <div class="overlay">
+      <span>
+        <h4 class="card-title">{{product.name}}</h4>
+        <a [routerLink]="['/details', product.id]" routerLinkActive="active">See more..</a>
+      </span>
     </div>
   </div>
 </a>

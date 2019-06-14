@@ -31,7 +31,7 @@ export class OrderFormComponent implements OnInit {
   paymentMethods = ["Paypal", "Bitcoin", "Guld"];
 
   orderGroup = this.fb.group({
-    name: ['', Validators.required],
+    email: ['', Validators.required, Validators.email],
     paymentMethods: ['Paypal', Validators.required]
   });
 
@@ -50,15 +50,15 @@ export class OrderFormComponent implements OnInit {
 
     this.order = {
       companyId: 11,
-      createdBy: this.orderGroup.value.name,
+      createdBy: this.orderGroup.value.email,
       paymentMethod: this.orderGroup.value.paymentMethods,
       status: 0,
       totalPrice: this.sum,
       created: now,
       orderRows: this.orderRows
     };
-    console.log(this.order);
     this.service.sendData(this.order).subscribe();
+    sessionStorage.clear();
     this.router.navigate(['orderconfirm']);
   }
 

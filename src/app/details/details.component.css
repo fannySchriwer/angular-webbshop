@@ -6,20 +6,29 @@ img {
   max-width: 100%;
 }
 
+.modal img {
+    height: 200px;
+}
+.modal h5, .modal p {
+    color: black;
+}
+
 h2 {
     text-align: center;
+    padding: .5em;
     margin: 10px;
 }
 
-p {
-    margin-bottom: 10px;
+p, h5, h6 {
+    margin: 1em 0;
 }
 
-@media only screen and (min-width : 500px) {
-    .row {
-        flex-direction: row;
-    }
-    .col {
-        width: 45%;
-    }
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
 }
