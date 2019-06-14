@@ -31,7 +31,7 @@ export class OrderFormComponent implements OnInit {
   paymentMethods = ["Paypal", "Bitcoin", "Guld"];
 
   orderGroup = this.fb.group({
-    name: ['', Validators.required],
+    email: ['', Validators.required],
     paymentMethods: ['Paypal', Validators.required]
   });
 
