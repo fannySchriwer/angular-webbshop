@@ -1,0 +1,58 @@
+/*<i class="fas fa-star-half-alt"></i>*/
+/*<i class="fas fa-star"></i>*/
+/*<i class="far fa-star"></i>*/
+
+header, footer {
+    min-height: 5em;
+    background-color: var(--header);
+}
+
+h1 {
+    font-size: 2.25em;
+    padding: .3em .5em;
+}
+
+.cart-icon-link img {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 1em;
+}
+
+a, h1 {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    border-top: 1px solid var(--red);
+}
+
+nav li {
+    padding: 0 1em;
+    display:inline-block;
+}
+
+ul {
+    margin: 0 auto;
+}
+
+nav a:hover {
+    color: var(--yellow);
+}
+
+.red-hr {
+    border-bottom: 2px solid var(--red);
+    width: 70%;
+}
+
+@media(min-width: 768px) {
+    h1 {
+        padding: .3em 1em;
+    }
+    nav li {
+        padding: 0 2em;
+    }
+}

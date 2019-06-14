@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-12">
+
+  <div class="text-center" *ngIf="!collectedCartItems || collectedCartItems.length === 0">
+    <p>Your cart is empty!</p>
+  </div>
+
+  <div *ngIf="collectedCartItems || collectedCartItems.length > 0">
+    <div class="col-12 col-md-6" *ngFor="let product of collectedCartItems">
+      
+      <div class="row">
+        <div class="col-6 p-2">
+          <img src="{{product.product.imageUrl}}" alt="movie poster">
+        </div>
+
+        <div class="col-6 p-2">
+          <p>{{product.product.name}}</p>
+          <p>{{product.product.price}}sek</p>
+
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <button class="btn btn-secondary" type="button" (click)="addQuantity(quantity.value, product)">+</button>
+            </div>
+            <input type="number" min="0" max="50" value="{{product.quantity}}" #quantity (keyup.enter)="updateQuantity(quantity.value, product)">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" type="button" (click)="removeQuantity(quantity.value, product)">-</button>
+            </div>
+          </div>
+
+          <p>Total price: {{product.totalPrice}}sek</p>
+          
+          <button class="btn btn-secondary" (click)="onRemoveItem(product)">Delete</button>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>  
+</div>
+</div>
+
+<div class="row">
+  <a class="mt-2" routerLinkActive="active" routerLink="/orderform" routerLinkActive="active">
+    <button type="button" id="btn-disabled" [class.display]="ifNoItems" class="btn btn-secondary">Continue to checkout</button>
+  </a>
+  <router-outlet></router-outlet>
+</div>

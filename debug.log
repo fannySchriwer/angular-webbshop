@@ -1,0 +1,13 @@
+[0517/210541.755:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0520/141610.321:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0521/101442.565:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0523/151918.216:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0524/094926.740:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0524/133239.855:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0524/155953.789:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: Åtgärden har slutförts. (0x0)
+[0524/172103.822:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0527/140518.319:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0613/105344.941:ERROR:process_info.cc(329)] VirtualQueryEx: Åtkomst nekad. (0x5)
+[0613/105344.945:ERROR:process_info.cc(550)] ReadMemoryInfo failed
+[0613/105344.945:ERROR:process_memory_win.cc(39)] Failed to initialize ProcessInfo.
+[0613/105344.945:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Ett försök gjordes att använda en befintlig process. (0xc000010a)

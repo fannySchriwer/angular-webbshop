@@ -1,0 +1,19 @@
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.display {
+    display: none;
+}
+
+.wrapper {
+    background-color: var(--header);
+}
+
+.disabled {
+    color: grey;
+}
+
+

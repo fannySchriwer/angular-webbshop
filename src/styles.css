@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+}
+
+body {
+    background-color: var(--header);
+}
+h1 {
+    font-family: 'Cedarville Cursive', cursive;
+}
+h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    color: white;
+}
+
+p {
+    font-family: var(--main-font);
+    color: white;
+}
+
+:root {
+    --header: black;
+    --yellow: #FFCD3E;
+    --red: #D90000;
+
+    --heading-font: 'Roboto Mono', monospace;
+    --main-font: 'Open Sans', sans-serif;
+}
