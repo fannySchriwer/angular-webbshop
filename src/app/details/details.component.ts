@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { IProduct } from '../interfaces/IProduct';
-import { ICartItem } from '../interfaces/ICartItem';
 
 declare var $: any;
 
@@ -23,6 +22,14 @@ export class DetailsComponent implements OnInit {
       let productId = myParams['id'];
       this.getProduct(productId);
     });    
+  }
+
+  validateInputQuantity(quantity: number, product: IProduct) {
+    if(quantity > 0) {
+      this.onAddToCart(quantity, product);
+    } else {
+      alert("You must order at least 1 poster");
+    }
   }
 
   onAddToCart(quantity: number, product: IProduct) {
